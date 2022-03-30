@@ -1,0 +1,154 @@
+{
+"slime":[
+	{
+		"type":1,
+		"name":"바운스",
+		"minDamage":1,
+		"maxDamage":8
+	},
+	{
+		"type":1,
+		"name":"슬라임 볼",
+		"minDamage":1,
+		"maxDamage":11
+	},
+	{
+		"type":1,
+		"name":"포이즌 슬라임",
+		"minDamage":1,
+		"maxDamage":10
+	},
+	{
+		"type":1,
+		"name":"슬라임 덫",
+		"minDamage":1,
+		"maxDamage":9
+	},
+	{
+		"type":1,
+		"name":"끈적한 총",
+		"minDamage":1,
+		"maxDamage":14
+	},
+	{
+		"type":1,
+		"name":"슬라임 불",
+		"minDamage":1,
+		"maxDamage":12
+	},
+	{
+		"type":1,
+		"name":"폭발 슬라임",
+		"minDamage":1,
+		"maxDamage":15
+	},
+	{
+		"type":3,
+		"name":"재생",
+		"minHeal":3,
+		"maxHeal":6,
+		"dmgReduction":40
+	}
+],
+"redreaper":[
+	{
+		"type":2,
+		"name":"낫 베기",
+		"damage":2,
+		"crit":60
+	},
+	{
+		"type":2,
+		"name":"유령의 일제사격",
+		"damage":2,
+		"crit":30
+	},
+	{
+		"type":2,
+		"name":"스컬 샷",
+		"damage":3,
+		"crit":80
+	},
+	{
+		"type":2,
+		"name":"치명적인 역병",
+		"damage":3,
+		"crit":40
+	},
+	{
+		"type":2,
+		"name":"퇴마",
+		"damage":4,
+		"crit":100
+	},
+	{
+		"type":2,
+		"name":"어둠의 연발사격",
+		"damage":4,
+		"crit":30
+	},
+	{
+		"type":2,
+		"name":"사신 난동",
+		"damage":5,
+		"crit":50
+	},
+	{
+		"type":3,
+		"name":"죽음의 도전",
+		"minHeal":1,
+		"maxHeal":4,
+		"dmgReduction":20
+	}
+],
+"icegolem":[
+	{
+		"type":0,
+		"name":"동결 스파이크",
+		"minDamage":2,
+		"maxDamage":3
+	},
+	{
+		"type":0,
+		"name":"구르기",
+		"minDamage":3,
+		"maxDamage":4
+	},
+	{
+		"type":0,
+		"name":"얼음 무덤",
+		"minDamage":3,
+		"maxDamage":5
+	},
+	{
+		"type":0,
+		"name":"고드름비",
+		"minDamage":4,
+		"maxDamage":5
+	},
+	{
+		"type":0,
+		"name":"다이어몬드 스매시",
+		"minDamage":4,
+		"maxDamage":6
+	},
+	{
+		"type":0,
+		"name":"서리 숨결",
+		"minDamage":5,
+		"maxDamage":6
+	},
+	{
+		"type":0,
+		"name":"동굴지진",
+		"minDamage":6,
+		"maxDamage":7
+	},
+	{
+		"type":0,
+		"name":"서리 주먹",
+		"minDamage":3,
+		"maxDamage":5
+	}
+]
+}

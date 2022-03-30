@@ -1,0 +1,66 @@
+{
+"worlds": [
+	{
+		"name":"슬라임 숲",
+		"shortDesc":"LV. 1-11\nBOSS: 슬라임 왕",
+		"longDesc":"오래전 이 숲에는 보통 동물들이 살고 있었습니다. 한 미친 과학자가 이곳에 살면서 생물에 대한 기이한 실험을 했습니다. 어느 날 문제가 생겨 동물들을 난폭한 슬라임으로 만들었습니다. 슬라임이 그를 죽이고 그 이후로 이 숲을 지배하고 있습니다...",
+		"numLevels":14,
+		"levels": [
+			{ "name":"숲 입구", "avgLevel":1 },
+			{ "name":"나무들 사이로", "avgLevel":1 },
+			{ "name":"끈적한 길", "avgLevel":2 },
+			{ "name":"모든곳이 녹색으로", "avgLevel":3 },
+			{ "name":"비내리는 작은 숲", "avgLevel":4 },
+			{ "name":"하나 둘 셋", "avgLevel":4 },
+			{ "name":"파란색의 징조", "avgLevel":5 },
+			{ "name":"슬라임 호수", "avgLevel":6 },
+			{ "name":"물길을 넘어", "avgLevel":7 },
+			{ "name":"언덕위의 나무들", "avgLevel":8 },
+			{ "name":"흔적을 따라가다", "avgLevel":9 },
+			{ "name":"네 모서리", "avgLevel":9 },
+			{ "name":"커다란 붉은 나선", "avgLevel":10 },
+			{ "name":"왕을 마주하다", "avgLevel":11 }
+		]
+	},
+	{
+		"name":"으스스한 묘지",
+		"shortDesc":"LV. 12-24\nBOSS: 붉은 사신",
+		"longDesc":"이 묘지를 떠도는 것은 수천 년 전에 강력한 강령술사에 의해 만들어졌습니다. 어둠 속에서 악령과 으스스한 해골이 고인의 무덤을 지키고 있습니다. 이 공포의 깊숙한 곳에서 죽음이 살고 있다고 합니다...",
+		"numLevels":11,
+		"levels": [
+			{ "name":"섬뜩한 문", "avgLevel":12 },
+			{ "name":"흩어진 무덤", "avgLevel":13 },
+			{ "name":"유령의 언덕", "avgLevel":14 },
+			{ "name":"언데드", "avgLevel":15 },
+			{ "name":"무덤에서 일어나", "avgLevel":16 },
+			{ "name":"으스스한 해골", "avgLevel":18 },
+			{ "name":"밤으로", "avgLevel":19 },
+			{ "name":"뼈와 영혼들", "avgLevel":20 },
+			{ "name":"기이한 마법", "avgLevel":21 },
+			{ "name":"해골 성역", "avgLevel":23 },
+			{ "name":"붉은 사신", "avgLevel":24 }
+		]
+	},
+	{
+		"name":"서리가 내린 동굴",
+		"shortDesc":"LV. 25-38\nBOSS: 얼음 골렘",
+		"longDesc":"눈 덮인 산 깊숙한 곳에는 수천 년 동안 몬스터를 꽁꽁 얼린 상태로 가두었던 얼음 동굴이 있습니다. 그 이후로 생물들은 해빙되어 동굴 전체에 만연해 있습니다. 그들은 치명적이고 강력한 짐승들입니다...",
+		"numLevels":13,
+		"levels": [
+			{ "name":"툰드라 산책로", "avgLevel":25 },
+			{ "name":"북극 소나무", "avgLevel":26 },
+			{ "name":"추운 숲", "avgLevel":26 },
+			{ "name":"호수 빙하", "avgLevel":27 },
+			{ "name":"서리로 덮인 언덕", "avgLevel":28 },
+			{ "name":"눈보라의 아수라장", "avgLevel":29 },
+			{ "name":"동굴 입구", "avgLevel":30 },
+			{ "name":"불안정한 냉동장치", "avgLevel":33 },
+			{ "name":"얼어붙은 보석", "avgLevel":34 },
+			{ "name":"얼음으로 덮인 고드름", "avgLevel":35 },
+			{ "name":"미끄러지고 미끄러지다", "avgLevel":36 },
+			{ "name":"가장 추운 동굴", "avgLevel":37 },
+			{ "name":"얼음 바위", "avgLevel":38 }
+		]
+	}
+]
+}

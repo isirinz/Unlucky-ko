@@ -1,0 +1,547 @@
+{
+"accurate":[
+	{
+		"type":0,
+		"name":"충격",
+		"minDamage":1,
+		"maxDamage":2
+	},
+	{
+		"type":0,
+		"name":"찌르기",
+		"minDamage":1,
+		"maxDamage":2
+	},
+	{
+		"type":0,
+		"name":"잽",
+		"minDamage":1,
+		"maxDamage":2
+	},
+	{
+		"type":0,
+		"name":"퀵샷",
+		"minDamage":2,
+		"maxDamage":3
+	},
+	{
+		"type":0,
+		"name":"침묵",
+		"minDamage":2,
+		"maxDamage":3
+	},
+	{
+		"type":0,
+		"name":"박치기",
+		"minDamage":2,
+		"maxDamage":3
+	},
+	{
+		"type":0,
+		"name":"슬래시 스톰",
+		"minDamage":2,
+		"maxDamage":3
+	},
+	{
+		"type":0,
+		"name":"플래시 공격",
+		"minDamage":2,
+		"maxDamage":3
+	},
+	{
+		"type":0,
+		"name":"일렉트로 펀치",
+		"minDamage":3,
+		"maxDamage":4
+	},
+	{
+		"type":0,
+		"name":"마그마 펀치",
+		"minDamage":3,
+		"maxDamage":4
+	},
+	{
+		"type":0,
+		"name":"아이스 펀치",
+		"minDamage":3,
+		"maxDamage":4
+	},
+	{
+		"type":0,
+		"name":"혜성 펀치",
+		"minDamage":3,
+		"maxDamage":4
+	},
+	{
+		"type":0,
+		"name":"산성비",
+		"minDamage":3,
+		"maxDamage":4
+	},
+	{
+		"type":0,
+		"name":"독성 증기",
+		"minDamage":3,
+		"maxDamage":4
+	},
+	{
+		"type":0,
+		"name":"감전",
+		"minDamage":3,
+		"maxDamage":5
+	},
+	{
+		"type":0,
+		"name":"소각",
+		"minDamage":3,
+		"maxDamage":5
+	},
+	{
+		"type":0,
+		"name":"동결",
+		"minDamage":3,
+		"maxDamage":5
+	},
+	{
+		"type":0,
+		"name":"점화",
+		"minDamage":3,
+		"maxDamage":5
+	},
+	{
+		"type":0,
+		"name":"독 바르기",
+		"minDamage":3,
+		"maxDamage":5
+	},
+	{
+		"type":0,
+		"name":"근원 강타",
+		"minDamage":4,
+		"maxDamage":5
+	},
+	{
+		"type":0,
+		"name":"사이클론",
+		"minDamage":4,
+		"maxDamage":5
+	},
+	{
+		"type":0,
+		"name":"소용돌이 펀치",
+		"minDamage":4,
+		"maxDamage":5
+	},
+	{
+		"type":0,
+		"name":"정신 제어",
+		"minDamage":4,
+		"maxDamage":5
+	},
+	{
+		"type":0,
+		"name":"공허 소환",
+		"minDamage":5,
+		"maxDamage":6
+	},
+	{
+		"type":0,
+		"name":"그림자 트위스트",
+		"minDamage":5,
+		"maxDamage":6
+	},
+	{
+		"type":0,
+		"name":"죽음의 인장",
+		"minDamage":6,
+		"maxDamage":7
+	},
+	{
+		"type":0,
+		"name":"시간의 종말",
+		"minDamage":7,
+		"maxDamage":8
+	}
+],
+"wide":[
+	{
+		"type":1,
+		"name":"강타",
+		"minDamage":1,
+		"maxDamage":4
+	},
+	{
+		"type":1,
+		"name":"스윈들",
+		"minDamage":1,
+		"maxDamage":4
+	},
+	{
+		"type":1,
+		"name":"플림플람",
+		"minDamage":1,
+		"maxDamage":4
+	},
+	{
+		"type":1,
+		"name":"붐",
+		"minDamage":1,
+		"maxDamage":4
+	},
+	{
+		"type":1,
+		"name":"화살비",
+		"minDamage":1,
+		"maxDamage":5
+	},
+	{
+		"type":1,
+		"name":"트릭 샷",
+		"minDamage":1,
+		"maxDamage":5
+	},
+	{
+		"type":1,
+		"name":"Brandish",
+		"minDamage":1,
+		"maxDamage":5
+	},
+	{
+		"type":1,
+		"name":"그림자 공격",
+		"minDamage":1,
+		"maxDamage":5
+	},
+	{
+		"type":1,
+		"name":"치명적인 창",
+		"minDamage":1,
+		"maxDamage":5
+	},
+	{
+		"type":1,
+		"name":"신기루 찌르기",
+		"minDamage":1,
+		"maxDamage":5
+	},
+	{
+		"type":1,
+		"name":"나선 강타",
+		"minDamage":1,
+		"maxDamage":5
+	},
+	{
+		"type":1,
+		"name":"스페이드 에이스",
+		"minDamage":1,
+		"maxDamage":5
+	},
+	{
+		"type":1,
+		"name":"허리케인 빔",
+		"minDamage":1,
+		"maxDamage":5
+	},
+	{
+		"type":1,
+		"name":"매혹",
+		"minDamage":1,
+		"maxDamage":6
+	},
+	{
+		"type":1,
+		"name":"불의 고리",
+		"minDamage":1,
+		"maxDamage":6
+	},
+	{
+		"type":1,
+		"name":"네크로틱 잽",
+		"minDamage":1,
+		"maxDamage":6
+	},
+	{
+		"type":1,
+		"name":"크로노스트라이크",
+		"minDamage":1,
+		"maxDamage":6
+	},
+	{
+		"type":1,
+		"name":"오라 오로라",
+		"minDamage":1,
+		"maxDamage":6
+	},
+	{
+		"type":1,
+		"name":"반사 광선",
+		"minDamage":1,
+		"maxDamage":7
+	},
+	{
+		"type":1,
+		"name":"죽음과 부패",
+		"minDamage":1,
+		"maxDamage":7
+	},
+	{
+		"type":1,
+		"name":"중력 펀치",
+		"minDamage":1,
+		"maxDamage":7
+	},
+	{
+		"type":1,
+		"name":"팬텀 슬라이스",
+		"minDamage":1,
+		"maxDamage":8
+	},
+	{
+		"type":1,
+		"name":"양자 스트라이크",
+		"minDamage":1,
+		"maxDamage":9
+	},
+	{
+		"type":1,
+		"name":"무한 찌르기",
+		"minDamage":1,
+		"maxDamage":9
+	},
+	{
+		"type":1,
+		"name":"운석 소환",
+		"minDamage":1,
+		"maxDamage":10
+	},
+	{
+		"type":1,
+		"name":"땅 흔들기",
+		"minDamage":1,
+		"maxDamage":11
+	},
+	{
+		"type":1,
+		"name":"행운",
+		"minDamage":1,
+		"maxDamage":15
+	}
+],
+"crit":[
+	{
+		"name":"시프트 스탭",
+		"damage":2,
+		"crit":60
+	},
+	{
+		"name":"소용돌이",
+		"damage":2,
+		"crit":70
+	},
+	{
+		"name":"럭키 스트라이크",
+		"damage":2,
+		"crit":67
+	},
+	{
+		"name":"마법 파도",
+		"damage":2,
+		"crit":80
+	},
+	{
+		"name":"사형 집행",
+		"damage":2,
+		"crit":50
+	},
+	{
+		"name":"벌침",
+		"damage":2,
+		"crit":60
+	},
+	{
+		"name":"동전 뒤집기",
+		"damage":2,
+		"crit":50
+	},
+	{
+		"name":"멜팅 파이어",
+		"damage":2,
+		"crit":55
+	},
+	{
+		"name":"워프 스트라이크",
+		"damage":2,
+		"crit":40
+	},
+	{
+		"name":"파이로 펄스",
+		"damage":2,
+		"crit":40
+	},
+	{
+		"name":"약점 노출",
+		"damage":3,
+		"crit":30
+	},
+	{
+		"name":"엔트로피 방출",
+		"damage":3,
+		"crit":40
+	},
+	{
+		"name":"역병",
+		"damage":3,
+		"crit":50
+	},
+	{
+		"name":"환각",
+		"damage":3,
+		"crit":55
+	},
+	{
+		"name":"생명 찌르기",
+		"damage":3,
+		"crit":25
+	},
+	{
+		"name":"광점 펀치",
+		"damage":3,
+		"crit":33
+	},
+	{
+		"name":"충격파",
+		"damage":3,
+		"crit":35
+	},
+	{
+		"name":"제우스의 번개",
+		"damage":3,
+		"crit":45
+	},
+	{
+		"name":"폭풍우 사격",
+		"damage":3,
+		"crit":30
+	},
+	{
+		"name":"메모리 매쉬",
+		"damage":4,
+		"crit":15
+	},
+	{
+		"name":"헤드샷",
+		"damage":4,
+		"crit":10
+	},
+	{
+		"name":"영혼 약탈자",
+		"damage":4,
+		"crit":20
+	},
+	{
+		"name":"유독성 다트",
+		"damage":4,
+		"crit":25
+	},
+	{
+		"name":"문스트라이크",
+		"damage":4,
+		"crit":15
+	},
+	{
+		"name":"지진",
+		"damage":5,
+		"crit":10
+	},
+	{
+		"name":"붕괴",
+		"damage":5,
+		"crit":15
+	},
+	{
+		"name":"핵 탄환",
+		"damage":5,
+		"crit":65
+	}
+],
+"healing":[
+	{
+		"name":"붕대",
+		"minHeal":1,
+		"maxHeal":2,
+		"dmgReduction":30
+	},
+	{
+		"name":"불멸의 결의",
+		"minHeal":1,
+		"maxHeal":2,
+		"dmgReduction":80
+	},
+	{
+		"name":"가벼운 치유",
+		"minHeal":1,
+		"maxHeal":3,
+		"dmgReduction":20
+	},
+	{
+		"name":"치유",
+		"minHeal":2,
+		"maxHeal":3,
+		"dmgReduction":30
+	},
+	{
+		"name":"강화",
+		"minHeal":2,
+		"maxHeal":3,
+		"dmgReduction":50
+	},
+	{
+		"name":"재생",
+		"minHeal":2,
+		"maxHeal":4,
+		"dmgReduction":20
+	},
+	{
+		"name":"자가 치유",
+		"minHeal":2,
+		"maxHeal":4,
+		"dmgReduction":10
+	},
+	{
+		"name":"회복",
+		"minHeal":3,
+		"maxHeal":5,
+		"dmgReduction":20
+	},
+	{
+		"name":"힐링 웨이브",
+		"minHeal":4,
+		"maxHeal":5,
+		"dmgReduction":40
+	},
+	{
+		"name":"생명의 치유",
+		"minHeal":4,
+		"maxHeal":6,
+		"dmgReduction":50
+	},
+	{
+		"name":"신의 축복",
+		"minHeal":6,
+		"maxHeal":8,
+		"dmgReduction":60
+	},
+	{
+		"name":"창세기",
+		"minHeal":7,
+		"maxHeal":10,
+		"dmgReduction":40
+	},
+	{
+		"name":"삶이냐 죽음이냐",
+		"minHeal":1,
+		"maxHeal":10,
+		"dmgReduction":30
+	}
+]
+}
