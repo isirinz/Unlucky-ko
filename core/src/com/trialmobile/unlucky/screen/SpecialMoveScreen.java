@@ -140,6 +140,7 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
         scrollTable = new Table();
 
         tooltip = new SMoveTooltip(rm.skin, headerStyle);
+        tooltip.setScale(2);
         stage.addActor(tooltip);
         selectedSlot = new Image(rm.smoveSlots[1]);
         selectedSlot.setVisible(false);
@@ -155,9 +156,9 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
             }
         });
 
-        smoveset = new Label("Special\nMoveset", headerStyle);
+        smoveset = new Label(rm.bundle.get("SPECIAL_MOVESET"), headerStyle);
         smoveset.setFontScale(0.5f);
-        smoveset.setPosition(130, 40);
+        smoveset.setPosition(280, 84);
         smoveset.setAlignment(Align.center);
         smoveset.setTouchable(Touchable.disabled);
         stage.addActor(smoveset);
@@ -232,13 +233,15 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
 
         smoveButtons[0] = new ImageButton(addButtonStyle[1]);
         smoveButtons[1] = new ImageButton(removeButtonStyle[1]);
+        smoveButtons[0].getImage().setScale(2);
+        smoveButtons[1].getImage().setScale(2);
 
         smoveButtons[0].setPosition(192, 128);
         smoveButtons[1].setPosition(192, 28);
         smoveButtons[0].setTouchable(Touchable.disabled);
         smoveButtons[1].setTouchable(Touchable.disabled);
         smoveButtonLabels[0].setPosition(188, 128);
-        smoveButtonLabels[1].setPosition(186, 28);
+        smoveButtonLabels[1].setPosition(194, 28);
         stage.addActor(smoveButtons[0]);
         stage.addActor(smoveButtons[1]);
         stage.addActor(smoveButtonLabels[0]);
@@ -286,9 +289,9 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
                         l.setFontScale(0.5f);
                         l.setAlignment(Align.center);
                         text(l);
-                        getButtonTable().defaults().width(80);
-                        getButtonTable().defaults().height(30);
-                        button("OK", "ok");
+                        getButtonTable().defaults().width(40);
+                        getButtonTable().defaults().height(15);
+                        button(rm.bundle.get("DIALOG_OK"), "ok");
                     }
 
                     @Override
@@ -380,11 +383,20 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
     }
 
     private Vector2 getTooltipCoords(Vector2 pos, int index) {
-        Vector2 ret = new Vector2();
-        if (index == 0) ret.set(pos.x + 32, pos.y - tooltip.getHeight() / 4);
-        if (index == 1 || index == 2) ret.set(pos.x + 20, pos.y - tooltip.getHeight());
-        if (index == 3 || index == 4) ret.set(pos.x - 8, pos.y + tooltip.getHeight() / 2 + 4);
-        return ret;
+//        Vector2 ret = new Vector2();
+//        if (index == 0) ret.set(pos.x + 32, pos.y - tooltip.getHeight());
+//        if (index == 1 || index == 2) ret.set(pos.x + 32, pos.y - tooltip.getHeight());
+//        if (index == 3 || index == 4) ret.set(pos.x - 16, pos.y + tooltip.getHeight() + 16);
+//        return ret;
+        if (index == 0) return new Vector2(264, 80 - tooltip.getHeight());
+        // top
+        if (index == 1) return new Vector2(276, 106 - tooltip.getHeight());
+        // top right
+        if (index == 2) return new Vector2(308 - tooltip.getWidth(), 112 - tooltip.getHeight());
+        // bottom right
+        if (index == 3) return new Vector2(308 - tooltip.getWidth(), 48 - tooltip.getHeight());
+            // bottom left
+        else return new Vector2(276, 52 + tooltip.getHeight());
     }
 
     private void unselectSlot() {
@@ -415,6 +427,7 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
             smoveGroup.setTransform(false);
 
             Image frame = new Image(rm.smoveFrame);
+            frame.setScale(2);
             frame.setPosition(6, 14);
             frame.setTouchable(Touchable.disabled);
             Image icon = new Image(smove.icon.getDrawable());
@@ -427,7 +440,7 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
             name.setTouchable(Touchable.disabled);
             Label desc = new Label(smove.desc, white);
             desc.setFontScale(0.5f);
-            desc.setPosition(40, 15);
+            desc.setPosition(40, 16);
             desc.setTouchable(Touchable.disabled);
             Label status;
             // green label if unlocked

@@ -283,7 +283,7 @@ public class TileMap {
                 int c = i % mapWidth;
 
                 if (!tileMap[i].animated && !tileMap[i].isSpecial() && tileMap[i].sprite != null) {
-                    batch.draw(tileMap[i].sprite, origin.x + c * tileSize, origin.y + r * tileSize);
+                    batch.draw(tileMap[i].sprite, origin.x + c * tileSize, origin.y + r * tileSize, tileSize, tileSize);
                 }
             }
         }

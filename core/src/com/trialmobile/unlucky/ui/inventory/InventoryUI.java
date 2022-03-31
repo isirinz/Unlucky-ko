@@ -49,28 +49,28 @@ public class InventoryUI extends UI {
     // dimensions to render the inventory at
     private static final int NUM_COLS = 6;
     // main background ui
-    private MovingImageUI ui;
+    private final MovingImageUI ui;
     // exit button
-    private ImageButton exitButton;
+    private final ImageButton exitButton;
     // headers
-    private Label[] headers;
+    private final Label[] headers;
     // stats labels
     // 0 - hp, 1 - dmg, 2 - acc, 3 - exp, 4 - gold
-    private Label[] stats;
+    private final Label[] stats;
     // health bar (no need for dynamic one)
-    private int maxBarWidth = 124;
+    private final int maxBarWidth = 124;
     private int hpBarWidth = 0;
     private int expBarWidth = 0;
     // selected slot
-    private Image selectedSlot;
+    private final Image selectedSlot;
     // item tooltip
-    private ItemTooltip tooltip;
+    private final ItemTooltip tooltip;
     // inventory buttons that can be applied to each item
     // 0 - enchant, 1 - sell
-    private ImageButton[] invButtons;
-    private ImageButton.ImageButtonStyle enabled;
-    private ImageButton.ImageButtonStyle disabled;
-    private Label[] invButtonLabels;
+    private final ImageButton[] invButtons;
+    private final ImageButton.ImageButtonStyle enabled;
+    private final ImageButton.ImageButtonStyle disabled;
+    private final Label[] invButtonLabels;
 
     // constants
     private static final int SLOT_WIDTH = 32;
@@ -185,8 +185,8 @@ public class InventoryUI extends UI {
      * Initializes the type of inventory (menu or in game) and the stage
      * Adds everything to the stage
      *
-     * @param inMenu
-     * @param s
+     * @param inMenu isMenu
+     * @param s stage
      */
     public void init(boolean inMenu, Stage s) {
         this.inMenu = inMenu;
@@ -195,8 +195,8 @@ public class InventoryUI extends UI {
 
         stage.addActor(ui);
         stage.addActor(exitButton);
-        for (int i = 0; i < headers.length; i++) stage.addActor(headers[i]);
-        for (int i = 0; i < stats.length; i++) stage.addActor(stats[i]);
+        for (Label header : headers) stage.addActor(header);
+        for (Label stat : stats) stage.addActor(stat);
         stage.addActor(selectedSlot);
         stage.addActor(tooltip);
         for (int i = 0; i < 2; i++) {
@@ -278,7 +278,7 @@ public class InventoryUI extends UI {
 
     /**
      * Adds inventory events to a given item
-     * @param item
+     * @param item item
      */
     private void addInventoryEvent(final Item item) {
         item.actor.clearListeners();
@@ -421,9 +421,9 @@ public class InventoryUI extends UI {
                         Vector2 tpos = getCoords(item);
                         // make sure items at the bottom don't get covered by the tooltip
                         if (tpos.y <= 62)
-                            tooltip.show(item, tpos.x + 8, tpos.y + tooltip.getHeight() / 2);
+                            tooltip.show(item, tpos.x + 16, tpos.y + tooltip.getHeight() / 2 + 8);
                         else
-                            tooltip.show(item, tpos.x + 8, tpos.y - tooltip.getHeight());
+                            tooltip.show(item, tpos.x + 16, tpos.y - tooltip.getHeight() * 2);
                     }
                 }
             }
@@ -759,7 +759,7 @@ public class InventoryUI extends UI {
     /**
      * Shows the golden highlight around the slot clicked
      *
-     * @param item
+     * @param item item
      */
     private void showSelectedSlot(Item item) {
         Vector2 pos = getCoords(item);
@@ -771,8 +771,8 @@ public class InventoryUI extends UI {
      * Returns a Vector2 containing the x y coordinates of the slot at a
      * given index of an item in the inventory or equips.
      *
-     * @param item
-     * @return
+     * @param item item
+     * @return position
      */
     private Vector2 getCoords(Item item) {
         Vector2 ret = new Vector2();
@@ -794,9 +794,9 @@ public class InventoryUI extends UI {
      * hovering when dragging an item so it can be dropped in the correct location
      * Returns -1 if outside of inventory range
      *
-     * @param x
-     * @param y
-     * @return
+     * @param x x
+     * @param y y
+     * @return item
      */
     private int getHoveredIndex(int x, int y) {
         for (int i = 0; i < Inventory.NUM_SLOTS; i++) {

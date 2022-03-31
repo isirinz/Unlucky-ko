@@ -32,7 +32,7 @@ public class Normal extends Enemy {
 
         // determine if elite
         isElite = Util.isSuccess(Util.ELITE_CHANCE);
-        if (isElite) this.id = "[ELITE] " + id;
+        if (isElite) this.id = rm.bundle.format("ELITE", id);
     }
 
     @Override

@@ -34,7 +34,7 @@ public class Player extends Entity {
      */
     public int moving = -1;
     // entity is in a continuous movement
-    private float speed;
+    private final float speed;
     // the Entity's current tile coordinates
     private int currentTileX;
     private int currentTileY;
@@ -146,7 +146,7 @@ public class Player extends Entity {
      * Moves an entity to a target position with a given magnitude.
      * Player movement triggered by input
      *
-     * @param dir
+     * @param dir direction
      */
     public void move(int dir) {
         currentTileX = (int) (position.x / tileMap.tileSize);
@@ -164,8 +164,8 @@ public class Player extends Entity {
      * This method is to fix a problem where the player can reset their
      * movement magnitudes continuously on a blocked tile
      *
-     * @param dir
-     * @return
+     * @param dir direction
+     * @return is blocked
      */
     public boolean nextTileBlocked(int dir) {
         currentTileX = (int) (position.x / tileMap.tileSize);
@@ -187,8 +187,8 @@ public class Player extends Entity {
      * Returns the next tile coordinate to move to either
      * currentPos +/- 1 or currentPos if the next tile is blocked
      *
-     * @param dir
-     * @return
+     * @param dir direction
+     * @return position
      */
     public int nextPosition(int dir) {
         switch (dir) {
@@ -435,7 +435,7 @@ public class Player extends Entity {
     /**
      * Applies the stats of an equipable item
      *
-     * @param item
+     * @param item equip item
      */
     public void equip(Item item) {
         maxHp += item.mhp;
@@ -448,7 +448,7 @@ public class Player extends Entity {
     /**
      * Removes the stats of an equipable item
      *
-     * @param item
+     * @param item un equip item
      */
     public void unequip(Item item) {
         maxHp -= item.mhp;
@@ -488,7 +488,7 @@ public class Player extends Entity {
 
     /**
      * Applies a percentage health potion
-     * @param php
+     * @param php percentage potion
      */
     public void percentagePotion(int php) {
         hp += (int) ((php / 100f) * maxHp);
@@ -502,7 +502,7 @@ public class Player extends Entity {
      * - heals based on map level (45% of the time)
      * - items (5% of the time)
      *
-     * @return
+     * @return strings
      */
     public String[] getQuestionMarkDialog(int mapLevel, GameMap gameMap) {
         String[] ret = null;

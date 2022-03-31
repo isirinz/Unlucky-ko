@@ -37,7 +37,7 @@ public class ItemTooltip extends Window {
 
         left();
         // fix padding because of scaling
-        this.padTop(24);
+        this.padTop(12);
         this.padLeft(4);
         this.padBottom(8);
         add(desc);

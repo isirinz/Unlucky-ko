@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Array;
 import com.trialmobile.unlucky.effects.Moving;
 import com.trialmobile.unlucky.entity.Player;
 import com.trialmobile.unlucky.event.EventState;
@@ -54,9 +55,6 @@ public class Hud extends UI {
 
     // death screen that is a prompt with the map background dimmed out
     public Group deathGroup;
-    private Image dark;
-    private Image frame;
-    private Label youDied;
     private Label loss;
 
     public Image shade;
@@ -205,7 +203,7 @@ public class Hud extends UI {
     /**
      * Turns the HUD on and off when another event occurs
      *
-     * @param toggle
+     * @param toggle toggle
      */
     public void toggle(boolean toggle) {
         if (toggle) {
@@ -229,21 +227,25 @@ public class Hud extends UI {
 
         // down
         dirPad[0] = new ImageButton(styles[0]);
+        dirPad[0].getImage().setScale(2);
         dirPad[0].setPosition(Util.DIR_PAD_SIZE + Util.DIR_PAD_OFFSET, Util.DIR_PAD_OFFSET);
         // up
         dirPad[1] = new ImageButton(styles[1]);
+        dirPad[1].getImage().setScale(2);
         dirPad[1].setPosition(Util.DIR_PAD_SIZE + Util.DIR_PAD_OFFSET, (Util.DIR_PAD_SIZE * 2) + Util.DIR_PAD_OFFSET);
         // right
         dirPad[2] = new ImageButton(styles[2]);
+        dirPad[2].getImage().setScale(2);
         dirPad[2].setPosition((Util.DIR_PAD_SIZE * 2) + Util.DIR_PAD_OFFSET, Util.DIR_PAD_SIZE + Util.DIR_PAD_OFFSET);
         // left
         dirPad[3] = new ImageButton(styles[3]);
+        dirPad[3].getImage().setScale(2);
         dirPad[3].setPosition(Util.DIR_PAD_OFFSET, Util.DIR_PAD_SIZE + Util.DIR_PAD_OFFSET);
 
         handleDirPadEvents();
 
-        for (int i = 0; i < dirPad.length; i++) {
-            stage.addActor(dirPad[i]);
+        for (ImageButton imageButton : dirPad) {
+            stage.addActor(imageButton);
         }
     }
 
@@ -296,15 +298,15 @@ public class Hud extends UI {
         deathGroup.setSize(Unlucky.V_WIDTH, Unlucky.V_HEIGHT);
         deathGroup.setTouchable(Touchable.enabled);
 
-        dark = new Image(rm.shade);
+        Image dark = new Image(rm.shade);
         deathGroup.addActor(dark);
 
-        frame = new Image(rm.skin, "textfield");
+        Image frame = new Image(rm.skin, "textfield");
         frame.setSize(200, 120);
         frame.setPosition((float)Unlucky.V_WIDTH / 2 - 100, (float)Unlucky.V_HEIGHT / 2 - 60);
         deathGroup.addActor(frame);
 
-        youDied = new Label(rm.bundle.get("YOU_DIED"), new Label.LabelStyle(rm.pixel10, Color.RED));
+        Label youDied = new Label(rm.bundle.get("YOU_DIED"), new Label.LabelStyle(rm.pixel10, Color.RED));
         youDied.setSize(200, 20);
         youDied.setPosition(100, 150);
         youDied.setAlignment(Align.center);
@@ -334,7 +336,7 @@ public class Hud extends UI {
 
     /**
      * Death text displays the items the player would've got, the gold and exp lost
-     * @param text
+     * @param text text
      */
     public void setDeathText(String text) {
         loss.setText(text);
@@ -366,7 +368,7 @@ public class Hud extends UI {
         player.addGold(-gameScreen.gameMap.goldObtained);
         player.addExp(-gameScreen.gameMap.expObtained);
         if (gameScreen.gameMap.itemsObtained.size != 0) {
-            for (Item item : gameScreen.gameMap.itemsObtained) {
+            for (Item item : new Array.ArrayIterator<>(gameScreen.gameMap.itemsObtained)) {
                 for (int i = 0; i < Inventory.NUM_SLOTS; i++) {
                     if (player.inventory.getItem(i) == item)
                         player.inventory.removeItem(i);

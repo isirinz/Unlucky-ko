@@ -137,7 +137,6 @@ public class ShopScreen extends MenuExtensionScreen {
         // exit button
         ImageButton exitButton = new ImageButton(exitStyle);
         exitButton.getImage().setScale(2);
-        exitButton.setSize(18, 18);
         exitButton.setPosition(376, 216);
         exitButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
@@ -210,8 +209,8 @@ public class ShopScreen extends MenuExtensionScreen {
         // shop ui
         // main table
         Table shopTable = new Table();
-        shopTable.setSize(186, 160);
-        shopTable.setPosition(38, 52);
+        shopTable.setSize(188, 160);
+        shopTable.setPosition(34, 52);
 
         // create tabs
         HorizontalGroup tabGroup = new HorizontalGroup();
@@ -229,12 +228,15 @@ public class ShopScreen extends MenuExtensionScreen {
         tabs.setMaxCheckCount(1);
         for (int i = 0; i < 3; i++) {
             tabButtons[i] = new TextButton(tabStrs[i], tabStyle);
-            tabButtons[i].getLabel().setFontScale(0.75f);
-            tabButtons[i].padLeft(8f);
-            tabButtons[i].padRight(8f);
+            tabButtons[i].getLabel().setFontScale(0.5f);
+            tabButtons[i].padLeft(10f);
+            tabButtons[i].padRight(11f);
+            tabButtons[i].padTop(1f);
+            tabButtons[i].padBottom(1f);
             tabs.add(tabButtons[i]);
             tabGroup.addActor(tabButtons[i]);
         }
+        tabGroup.padTop(4).align(Align.left);
         shopTable.add(tabGroup);
         shopTable.row();
 
@@ -306,9 +308,9 @@ public class ShopScreen extends MenuExtensionScreen {
                 itemPrice.setTouchable(Touchable.disabled);
                 itemPrice.setAlignment(Align.left);
 
-                itemTable.add(itemName).size(136, 16).padBottom(8).padTop(-8).padLeft(24).row();
-                itemTable.add(itemDesc).size(136, itemDesc.getPrefHeight()).padLeft(24).row();
-                itemTable.add(itemPrice).padTop(8).padBottom(-8).padLeft(24).size(136, 16);
+                itemTable.add(itemName).size(120, 16).padBottom(8).padTop(-4).padLeft(24).row();
+                itemTable.add(itemDesc).size(120, itemDesc.getPrefHeight()).padLeft(24).row();
+                itemTable.add(itemPrice).padTop(8).padBottom(-8).padLeft(24).size(120, 16);
 
                 itemGroup.addActor(b);
                 itemGroup.addActor(item.actor);
@@ -338,7 +340,7 @@ public class ShopScreen extends MenuExtensionScreen {
                 int height = (int) (itemTable.getPrefHeight() + itemTable.getPrefHeight() / 2);
                 item.actor.setPosition(8, (float)height / 2 - 10);
 
-                selectionContainer.add(itemGroup).padLeft(-2).padBottom(4).size(178, height).row();
+                selectionContainer.add(itemGroup).padLeft(0).padBottom(4).size(162, height).row();
             }
             selectionContainer.pack();
             selectionContainer.setTransform(false);
@@ -350,7 +352,7 @@ public class ShopScreen extends MenuExtensionScreen {
             scrollPane.setFadeScrollBars(true);
             //scrollPane.setupFadeScrollBars(0, 0);
             scrollPane.layout();
-            tabContents[i].add(scrollPane).size(192, 132).fill();
+            tabContents[i].add(scrollPane).size(184, 132).fill();
         }
     }
 

@@ -19,12 +19,12 @@ public class ShopItem extends Item {
      * For potions
      * Only can be consumed for hp or sold for gold
      *
-     * @param name
-     * @param desc
-     * @param rarity
+     * @param name name
+     * @param desc description
+     * @param rarity rarity
      * @param imgIndex for textureregion in spritesheet
-     * @param hp
-     * @param sell
+     * @param hp hp
+     * @param sell sell
      */
     public ShopItem(ResourceManager rm, String name, String desc, int rarity,
                     int imgIndex, int level, int hp, int exp, int sell, int price) {
@@ -37,15 +37,15 @@ public class ShopItem extends Item {
      * For all types of equips
      * Gives increased stats and can be sold for gold
      *
-     * @param name
-     * @param desc
-     * @param type
-     * @param rarity
-     * @param imgIndex
-     * @param mhp
-     * @param dmg
-     * @param acc
-     * @param sell
+     * @param name name
+     * @param desc description
+     * @param type type
+     * @param rarity rarity
+     * @param imgIndex for textureregion in spritesheet
+     * @param mhp max hp
+     * @param dmg damage
+     * @param acc acc
+     * @param sell sell
      */
     public ShopItem(ResourceManager rm, String name, String desc, int type, int rarity,
                     int imgIndex, int level, int mhp, int dmg, int acc, int sell, int price) {
@@ -59,14 +59,14 @@ public class ShopItem extends Item {
     /**
      * For enchant scrolls
      *
-     * @param rm
-     * @param name
-     * @param desc
-     * @param rarity
-     * @param imgIndex
-     * @param eChance
-     * @param sell
-     * @param price
+     * @param rm resource manager
+     * @param name name
+     * @param desc description
+     * @param rarity rarity
+     * @param imgIndex for textureregion in spritesheet
+     * @param eChance enchant chance
+     * @param sell sell
+     * @param price price
      */
     public ShopItem(ResourceManager rm, String name, String desc, int rarity, int imgIndex, int level,
                     int eChance, int sell, int price) {

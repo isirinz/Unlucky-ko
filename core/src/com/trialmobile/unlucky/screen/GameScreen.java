@@ -41,7 +41,7 @@ public class GameScreen extends AbstractScreen {
     public InputMultiplexer multiplexer;
 
     // battle background
-    private Background[] bg;
+    private final Background[] bg;
 
     // key
     private int worldIndex;
@@ -178,8 +178,8 @@ public class GameScreen extends AbstractScreen {
 
         if (currentEvent == EventState.BATTLING) {
             // update bg
-            for (int i = 0; i < bg.length; i++) {
-                bg[i].update(dt);
+            for (Background background : bg) {
+                background.update(dt);
             }
             battleUIHandler.update(dt);
         }
@@ -205,8 +205,8 @@ public class GameScreen extends AbstractScreen {
             if (currentEvent == EventState.BATTLING || transition.renderBattle) {
                 // bg camera
                 game.batch.setProjectionMatrix(battleUIHandler.getStage().getCamera().combined);
-                for (int i = 0; i < bg.length; i++) {
-                    bg[i].render(game.batch);
+                for (Background background : bg) {
+                    background.render(game.batch);
                 }
             }
 
@@ -244,7 +244,7 @@ public class GameScreen extends AbstractScreen {
     }
 
     /**
-     * @TODO: Add some sort of transitioning between events
+     * Add some sort of transitioning between events
      * @param event event
      */
     public void setCurrentEvent(EventState event) {

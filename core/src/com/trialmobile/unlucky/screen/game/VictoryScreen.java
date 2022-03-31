@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Array;
 import com.trialmobile.unlucky.VideoCallback;
 import com.trialmobile.unlucky.inventory.Item;
 import com.trialmobile.unlucky.main.Unlucky;
@@ -70,13 +71,13 @@ public class VictoryScreen extends AbstractScreen {
         style.imageUp = new TextureRegionDrawable(rm.menuExitButton[0][0]);
         style.imageDown = new TextureRegionDrawable(rm.menuExitButton[1][0]);
         exitButton = new ImageButton(style);
-        exitButton.setSize(36, 36);
+        exitButton.setScale(2);
         exitButton.setPosition(354, 192);
         stage.addActor(exitButton);
 
         exitButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                for (Item item : gameMap.itemsObtained) item.actor.remove();
+                for (Item item : new Array.ArrayIterator<>(gameMap.itemsObtained)) item.actor.remove();
                 game.menuScreen.transitionIn = 0;
                 setFadeScreen(game.menuScreen);
             }

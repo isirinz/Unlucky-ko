@@ -37,14 +37,6 @@ public class SettingsScreen extends MenuExtensionScreen {
     // whether or not the player is accessing settings from in game
     public boolean inGame = false;
 
-    // ui
-    private Image banner;
-    private Label bannerLabel;
-    private Image bg;
-    private Label.LabelStyle white;
-    private Label description;
-
-    private Label[] settingLabels;
     private Slider musicSlider;
     private Slider sfxSlider;
     private CheckBox muteMusic;
@@ -79,12 +71,13 @@ public class SettingsScreen extends MenuExtensionScreen {
         });
 
         // create title label
-        banner = new Image(rm.skin, "default-slider");
+        // ui
+        Image banner = new Image(rm.skin, "default-slider");
         banner.setPosition(16, 204);
         banner.setSize(328, 24);
         stage.addActor(banner);
 
-        bannerLabel = new Label(rm.bundle.get("SETTINGS"), rm.skin);
+        Label bannerLabel = new Label(rm.bundle.get("SETTINGS"), rm.skin);
         bannerLabel.setStyle(new Label.LabelStyle(rm.pixel10, new Color(1, 212 / 255.f, 0, 1)));
         bannerLabel.setSize(100, 24);
         bannerLabel.setTouchable(Touchable.disabled);
@@ -92,21 +85,21 @@ public class SettingsScreen extends MenuExtensionScreen {
         bannerLabel.setAlignment(Align.left);
         stage.addActor(bannerLabel);
 
-        bg = new Image(rm.skin, "default-slider");
+        Image bg = new Image(rm.skin, "default-slider");
         bg.setPosition(16, 16);
         bg.setSize(368, 176);
         stage.addActor(bg);
 
-        white = new Label.LabelStyle(rm.pixel10, Color.WHITE);
-        description = new Label("SOUND                                 MISC",
-            new Label.LabelStyle(rm.pixel10, new Color(1, 212 / 255.f, 0, 1)));
+        Label.LabelStyle white = new Label.LabelStyle(rm.pixel10, Color.WHITE);
+        Label description = new Label("SOUND                                 MISC",
+                new Label.LabelStyle(rm.pixel10, new Color(1, 212 / 255.f, 0, 1)));
         description.setFontScale(0.75f);
         description.setTouchable(Touchable.disabled);
         description.setPosition(28, 170);
         stage.addActor(description);
 
         // create settings labels
-        settingLabels = new Label[8];
+        Label[] settingLabels = new Label[8];
         String[] settingStrs = new String[] {
             "MUSIC VOLUME", "SFX VOLUME", "MUTE MUSIC:", "MUTE SFX:",
             "SHOW ENEMY LEVELS:", "WEATHER ANIMATIONS:", "SHOW FPS:", "LANGUAGE:"

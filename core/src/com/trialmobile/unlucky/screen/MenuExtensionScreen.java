@@ -28,8 +28,8 @@ public abstract class MenuExtensionScreen extends AbstractScreen {
         style.imageUp = new TextureRegionDrawable(rm.menuExitButton[0][0]);
         style.imageDown = new TextureRegionDrawable(rm.menuExitButton[1][0]);
         exitButton = new ImageButton(style);
-        exitButton.setSize(18, 18);
-        exitButton.setPosition(354, 198);
+        exitButton.getImage().setScale(2);
+        exitButton.setPosition(354, 200);
     }
 
     /**

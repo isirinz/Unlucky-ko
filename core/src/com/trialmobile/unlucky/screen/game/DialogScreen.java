@@ -29,11 +29,11 @@ public class DialogScreen extends UI {
     private float stateTime = 0;
 
     // the ui for displaying text
-    private Image ui;
+    private final Image ui;
     // Label for text animation
-    private Label textLabel;
+    private final Label textLabel;
     // invisible Label for clicking the window
-    private Label clickLabel;
+    private final Label clickLabel;
 
     // text animation
     private String currentText = "";
@@ -45,7 +45,6 @@ public class DialogScreen extends UI {
 
     private boolean beginCycle = false;
     private boolean endCycle = false;
-    private EventState prevEvent = EventState.NONE;
     private EventState nextEvent = EventState.NONE;
 
     // creates the blinking triangle effect when text is done animating
@@ -57,7 +56,7 @@ public class DialogScreen extends UI {
 
         // create main UI
         ui = new Image(rm.dialogBox400x80);
-        ui.setSize(200, 40);
+        ui.setSize(400, 80);
         ui.setPosition(0, 0);
         ui.setTouchable(Touchable.disabled);
 
@@ -71,13 +70,13 @@ public class DialogScreen extends UI {
         textLabel.setWrap(true);
         textLabel.setTouchable(Touchable.disabled);
         textLabel.setFontScale(1.7f / 2);
-        textLabel.setPosition(8, 6);
-        textLabel.setSize(350 / 2, 52 / 2);
+        textLabel.setPosition(16, 12);
+        textLabel.setSize(350, 52);
         textLabel.setAlignment(Align.topLeft);
         stage.addActor(textLabel);
 
         clickLabel = new Label("", font);
-        clickLabel.setSize(200, 120);
+        clickLabel.setSize(400, 240);
         clickLabel.setPosition(0, 0);
 
         final Player p = player;
@@ -115,10 +114,10 @@ public class DialogScreen extends UI {
      * Starts the text animation process given an array of Strings
      * Also takes in a BattleEvent that is called after the dialog is done
      *
-     * @param dialog
-     * @param next
+     * @param dialog messages
+     * @param next event
      */
-    public void startDialog(String[] dialog, EventState prev, EventState next) {
+    public void startDialog(String[] dialog, EventState next) {
         ui.setVisible(true);
         textLabel.setVisible(true);
         clickLabel.setVisible(true);
@@ -128,7 +127,6 @@ public class DialogScreen extends UI {
         currentText = currentDialog[0];
         anim = currentText.split("");
 
-        prevEvent = prev;
         nextEvent = next;
         beginCycle = true;
     }
@@ -194,21 +192,18 @@ public class DialogScreen extends UI {
     }
 
     public void handleEvent(EventState event) {
-        switch (event) {
-            case MOVING:
-                player.finishTileInteraction();
-                TextureRegion none = null;
-                gameScreen.gameMap.tileMap.setTile(gameScreen.gameMap.tileMap.toTileCoords(player.getPosition()),
-                        new Tile(-1, none, gameScreen.gameMap.tileMap.toTileCoords(player.getPosition())));
-                // player died from tile
-                if (player.getHp() <= 0) {
-                    gameScreen.gameMap.setDeath();
-                    gameScreen.die();
-                    return;
-                }
-                gameScreen.setCurrentEvent(EventState.MOVING);
-                gameScreen.hud.toggle(true);
-                break;
+        if (event == EventState.MOVING) {
+            player.finishTileInteraction();
+            gameScreen.gameMap.tileMap.setTile(gameScreen.gameMap.tileMap.toTileCoords(player.getPosition()),
+                    new Tile(-1, (TextureRegion)null, gameScreen.gameMap.tileMap.toTileCoords(player.getPosition())));
+            // player died from tile
+            if (player.getHp() <= 0) {
+                gameScreen.gameMap.setDeath();
+                gameScreen.die();
+                return;
+            }
+            gameScreen.setCurrentEvent(EventState.MOVING);
+            gameScreen.hud.toggle(true);
         }
     }
 

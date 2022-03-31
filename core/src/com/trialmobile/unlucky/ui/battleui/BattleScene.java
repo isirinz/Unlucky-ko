@@ -256,8 +256,8 @@ public class BattleScene extends BattleUI {
         if (playerHud.getX() != playerHud.moving.target.x - 1 &&
             enemyHud.getX() != enemyHud.moving.target.x - 1) {
             // set positions relative to hud position
-            playerHpBar.setPosition(playerHud.getX() + 40, playerHud.getY() + 8);
-            playerHudLabel.setPosition(playerHud.getX() + 40, playerHud.getY() + 20);
+            playerHpBar.setPosition(playerHud.getX() + 42, playerHud.getY() + 8);
+            playerHudLabel.setPosition(playerHud.getX() + 42, playerHud.getY() + 20);
             enemyHpBar.setPosition(enemyHud.getX() + 8, enemyHud.getY() + 8);
             enemyHudLabel.setPosition(enemyHud.getX() + 12, enemyHud.getY() + 20);
         }

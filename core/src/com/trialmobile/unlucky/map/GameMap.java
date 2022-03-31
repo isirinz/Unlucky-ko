@@ -41,9 +41,9 @@ public class GameMap {
 
     public TileMap tileMap;
     public Player player;
-    private ParticleFactory particleFactory;
+    private final ParticleFactory particleFactory;
     public GameScreen gameScreen;
-    private ResourceManager rm;
+    private final ResourceManager rm;
 
     public boolean renderLight;
     private float lightningTime = 0;
@@ -75,8 +75,8 @@ public class GameMap {
 
     /**
      * Loads a tile map from file based on world and level key
-     * @param worldIndex
-     * @param levelIndex
+     * @param worldIndex world
+     * @param levelIndex level
      */
     public void init(int worldIndex, int levelIndex) {
         this.worldIndex = worldIndex;
@@ -125,7 +125,7 @@ public class GameMap {
     /**
      * Changes the weather and sets the particle factory according to the weather
      *
-     * @param weather
+     * @param weather weather
      */
     public void setWeather(int weather) {
         if (weather == 0) this.weather = WeatherType.NORMAL;
@@ -172,26 +172,26 @@ public class GameMap {
         // gold and exp lost
         int goldLost = (int) ((Util.DEATH_PENALTY / 100f) * (float) player.getGold());
         int expLost = (int) ((Util.DEATH_PENALTY / 100f) * (float) player.getExp());
-        String itemText = "";
+        StringBuilder itemText = new StringBuilder();
         if (itemsObtained.size != 0) {
             for (int i = 0; i < itemsObtained.size; i++) {
                 Item item = itemsObtained.get(i);
                 if (i == itemsObtained.size - 1) {
-                    itemText += item.name + ".\n\nClick to continue...";
+                    itemText.append(item.name).append(".\n\n").append(rm.bundle.get("CLICK_TO_CONTINUE")).append("...");
                     break;
                 }
-                itemText += item.name + ", ";
+                itemText.append(item.name).append(", ");
             }
         }
-        String deathText = "You lost " + goldLost + " G and " + expLost + " EXP.\n" +
-            (itemsObtained.size == 0 ? "\nClick to continue..." : "You also lost the following items: " + itemText);
+        String deathText = rm.bundle.format("DEATH_LOSE_GOLD_EXP", goldLost, expLost) + "\n" +
+            (itemsObtained.size == 0 ? "\n"+rm.bundle.get("CLICK_TO_CONTINUE")+"..." : rm.bundle.get("DEATH_LOSE_ITEM") + " " + itemText);
         gameScreen.hud.setDeathText(deathText);
 
         // apply death penalties
         player.addGold(-goldLost);
         player.addExp(-expLost);
         if (itemsObtained.size != 0) {
-            for (Item item : itemsObtained) {
+            for (Item item : new Array.ArrayIterator<>(itemsObtained)) {
                 for (int i = 0; i < Inventory.NUM_SLOTS; i++) {
                     if (player.inventory.getItem(i) == item)
                         player.inventory.removeItem(i);
@@ -222,11 +222,11 @@ public class GameMap {
             gameScreen.setCurrentEvent(EventState.TILE_EVENT);
             if (player.getCurrentTile().isQuestionMark()) {
                 player.stats.numQuestionTiles++;
-                gameScreen.dialog.startDialog(player.getQuestionMarkDialog(avgLevel, this), EventState.MOVING, EventState.MOVING);
+                gameScreen.dialog.startDialog(player.getQuestionMarkDialog(avgLevel, this), EventState.MOVING);
             }
             else if (player.getCurrentTile().isExclamationMark()) {
                 player.stats.numExclamTiles++;
-                gameScreen.dialog.startDialog(player.getExclamDialog(avgLevel, this), EventState.MOVING, EventState.MOVING);
+                gameScreen.dialog.startDialog(player.getExclamDialog(avgLevel, this), EventState.MOVING);
             }
         }
         // player stepped on teleport tile

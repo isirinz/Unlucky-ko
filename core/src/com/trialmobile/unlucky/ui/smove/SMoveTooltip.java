@@ -22,13 +22,13 @@ public class SMoveTooltip extends Window {
         this.ls = ls;
 
         desc = new Label("", skin);
-        desc.setFontScale(0.5f);
-        this.getTitleLabel().setFontScale(0.5f);
+        desc.setFontScale(0.25f);
+        this.getTitleLabel().setFontScale(0.25f);
         left();
         // fix padding because of scaling
         this.padTop(12);
-        this.padLeft(2);
-        this.padBottom(4);
+        this.padLeft(4);
+        this.padBottom(8);
         add(desc);
         pack();
         this.setTouchable(Touchable.disabled);

@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -127,7 +128,7 @@ public class MenuScreen extends MenuExtensionScreen {
                 transitionIn == 1 ? Unlucky.V_WIDTH : -Unlucky.V_WIDTH, 0), Actions.moveTo(0, 0, 0.3f)));
         }
 
-        showAds();
+//        showAds();
     }
 
     @Override
@@ -166,8 +167,28 @@ public class MenuScreen extends MenuExtensionScreen {
         game.appInterface.showVideo(new VideoCallback() {
             @Override
             public void success(String type, int amount) {
+                final int gold = amount;
                 game.player.addGold(amount);
                 game.save.save();
+
+                new Dialog(rm.bundle.get("DIALOG_REWARD"), rm.dialogSkin) {
+                    {
+                        getTitleLabel().setFontScale(0.5f);
+                        Label l = new Label(rm.bundle.format("You_obtained_gold", gold), rm.dialogSkin);
+                        l.setFontScale(0.5f);
+                        l.setAlignment(Align.center);
+                        text(l);
+                        getButtonTable().defaults().width(40);
+                        getButtonTable().defaults().height(15);
+                        button(rm.bundle.get("DIALOG_OK"), "next");
+                    }
+
+                    @Override
+                    protected void result(Object object) {
+                        if (!game.player.settings.muteSfx) rm.buttonclick2.play(game.player.settings.sfxVolume);
+                    }
+
+                }.show(stage).getTitleLabel().setAlignment(Align.center);
             }
         });
     }
@@ -267,7 +288,7 @@ public class MenuScreen extends MenuExtensionScreen {
             ImageButton.ImageButtonStyle offerWallStyle = new ImageButton.ImageButtonStyle();
             offerWallStyle.imageUp = new TextureRegionDrawable(rm.offerWallIcon);
             offerWallButton = new ImageButton(offerWallStyle);
-            stage.addActor(offerWallButton);
+//            stage.addActor(offerWallButton);
             offerWallButton.setPosition(80, 45);
             offerWallButton.addListener(new ClickListener() {
                 @Override
