@@ -73,7 +73,7 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
         implementation 'com.google.android.gms:play-services-ads:19.6.0'
-        implementation 'com.resyp.offerwall:offerwall-sdk:1.1.4'
+        implementation 'com.resyp.offerwall:offerwall-sdk:1.1.5'
 
         def lifecycle_version = "2.0.0"
         implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"

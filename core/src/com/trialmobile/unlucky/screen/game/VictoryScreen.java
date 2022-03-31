@@ -122,8 +122,8 @@ public class VictoryScreen extends AbstractScreen {
         videoButton.setPosition((float)Unlucky.V_WIDTH / 2 - 120, 16);
         videoButton.setWidth(200);
         videoButton.setTouchable(Touchable.enabled);
-//        stage.addActor(videoButton);
-//        stage.addActor(videoLabel);
+        stage.addActor(videoButton);
+        stage.addActor(videoLabel);
 
         videoButton.addListener(new ClickListener() {
             @Override

@@ -21,7 +21,9 @@ import com.trialmobile.unlucky.effects.Moving;
 import com.trialmobile.unlucky.main.Unlucky;
 import com.trialmobile.unlucky.resource.ResourceManager;
 
+import java.util.Date;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The main menu screen of the game that holds all access points for playing,
@@ -65,6 +67,7 @@ public class MenuScreen extends MenuExtensionScreen {
     private ImageButton exitButton;
 
     private final Preferences prefs;
+    private long videoTime = 0;
 
     public MenuScreen(final Unlucky game, final ResourceManager rm) {
         super(game, rm);
@@ -128,7 +131,7 @@ public class MenuScreen extends MenuExtensionScreen {
                 transitionIn == 1 ? Unlucky.V_WIDTH : -Unlucky.V_WIDTH, 0), Actions.moveTo(0, 0, 0.3f)));
         }
 
-//        showAds();
+        showAds();
     }
 
     @Override
@@ -167,9 +170,11 @@ public class MenuScreen extends MenuExtensionScreen {
         game.appInterface.showVideo(new VideoCallback() {
             @Override
             public void success(String type, int amount) {
+                amount = 1000;
                 final int gold = amount;
                 game.player.addGold(amount);
                 game.save.save();
+                videoTime = (new Date()).getTime();
 
                 new Dialog(rm.bundle.get("DIALOG_REWARD"), rm.dialogSkin) {
                     {
@@ -275,12 +280,34 @@ public class MenuScreen extends MenuExtensionScreen {
         ImageButton.ImageButtonStyle videoAdStyle = new ImageButton.ImageButtonStyle();
         videoAdStyle.imageUp = new TextureRegionDrawable(rm.videoAdIcon);
         videoAdButton = new ImageButton(videoAdStyle);
-//        stage.addActor(videoAdButton);
+        stage.addActor(videoAdButton);
         videoAdButton.setPosition(80, 115);
         videoAdButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                showVideo();
+                long now = (new Date()).getTime();
+                if (videoTime + TimeUnit.MINUTES.toMillis(5) < now) {
+                    showVideo();
+                } else {
+                    new Dialog(rm.bundle.get("DIALOG_REWARD"), rm.dialogSkin) {
+                        {
+                            getTitleLabel().setFontScale(0.5f);
+                            Label l = new Label(rm.bundle.format("WAIT_VIDEO"), rm.dialogSkin);
+                            l.setFontScale(0.5f);
+                            l.setAlignment(Align.center);
+                            text(l);
+                            getButtonTable().defaults().width(40);
+                            getButtonTable().defaults().height(15);
+                            button(rm.bundle.get("DIALOG_OK"), "next");
+                        }
+
+                        @Override
+                        protected void result(Object object) {
+                            if (!game.player.settings.muteSfx) rm.buttonclick2.play(game.player.settings.sfxVolume);
+                        }
+
+                    }.show(stage).getTitleLabel().setAlignment(Align.center);
+                }
             }
         });
 
@@ -288,7 +315,7 @@ public class MenuScreen extends MenuExtensionScreen {
             ImageButton.ImageButtonStyle offerWallStyle = new ImageButton.ImageButtonStyle();
             offerWallStyle.imageUp = new TextureRegionDrawable(rm.offerWallIcon);
             offerWallButton = new ImageButton(offerWallStyle);
-//            stage.addActor(offerWallButton);
+            stage.addActor(offerWallButton);
             offerWallButton.setPosition(80, 45);
             offerWallButton.addListener(new ClickListener() {
                 @Override
