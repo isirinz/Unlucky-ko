@@ -1,6 +1,8 @@
 package com.trialmobile.unlucky;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -40,6 +43,7 @@ public class AndroidLauncher extends AndroidApplication implements AppInterface 
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		config.useAccelerometer = false;
 		config.useCompass = false;
+		config.useImmersiveMode = true;
 		View gameView = initializeForView(new UnluckyMain(this), config);
 
 		adView = new AdView(this);
@@ -62,6 +66,19 @@ public class AndroidLauncher extends AndroidApplication implements AppInterface 
 
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
+	}
+
+	@TargetApi(19)
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		super.onWindowFocusChanged(hasFocus);
+		if (hasFocus) {
+			getWindow().getDecorView().setSystemUiVisibility(
+					View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+							View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+							View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+							View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+		}
 	}
 
 	@Override

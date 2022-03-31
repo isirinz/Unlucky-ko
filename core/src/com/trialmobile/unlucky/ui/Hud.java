@@ -299,6 +299,7 @@ public class Hud extends UI {
         deathGroup.setTouchable(Touchable.enabled);
 
         Image dark = new Image(rm.shade);
+        dark.setScale(2);
         deathGroup.addActor(dark);
 
         Image frame = new Image(rm.skin, "textfield");

@@ -137,7 +137,8 @@ public class ShopScreen extends MenuExtensionScreen {
         // exit button
         ImageButton exitButton = new ImageButton(exitStyle);
         exitButton.getImage().setScale(2);
-        exitButton.setPosition(376, 216);
+        exitButton.setSize(36, 36);
+        exitButton.setPosition(365, 207);
         exitButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 if (!game.player.settings.muteSfx) rm.buttonclick0.play(game.player.settings.sfxVolume);
@@ -421,9 +422,9 @@ public class ShopScreen extends MenuExtensionScreen {
                     Vector2 tpos = getCoords(item);
                     // make sure items at the bottom don't get covered by the tooltip
                     if (tpos.y <= 42)
-                        tooltip.show(item, tpos.x + 16, tpos.y + tooltip.getHeight() / 2);
+                        tooltip.show(item, tpos.x + 16, tpos.y + tooltip.getHeight() / 2 + 8);
                     else
-                        tooltip.show(item, tpos.x + 16, tpos.y - tooltip.getHeight());
+                        tooltip.show(item, tpos.x + 16, tpos.y - tooltip.getHeight() * 2);
                     // enable selling
                     invButtons[1].setTouchable(Touchable.enabled);
                     invButtons[1].setStyle(enabled);

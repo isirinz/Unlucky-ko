@@ -39,7 +39,7 @@ public class ItemTooltip extends Window {
         // fix padding because of scaling
         this.padTop(12);
         this.padLeft(4);
-        this.padBottom(8);
+        this.padBottom(4);
         add(desc);
         pack();
         this.setTouchable(Touchable.disabled);

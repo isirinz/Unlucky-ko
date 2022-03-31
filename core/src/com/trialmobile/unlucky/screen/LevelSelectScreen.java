@@ -220,7 +220,7 @@ public class LevelSelectScreen extends SelectScreen {
             g.addActor(name);
             g.addActor(desc);
 
-            selectionContainer.add(g).padBottom(4).size(180, 40).row();
+            selectionContainer.add(g).padBottom(4).padRight(2).size(180, 40).row();
         }
         selectionContainer.pack();
         selectionContainer.setTransform(false);

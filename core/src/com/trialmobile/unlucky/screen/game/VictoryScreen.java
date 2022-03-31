@@ -71,7 +71,8 @@ public class VictoryScreen extends AbstractScreen {
         style.imageUp = new TextureRegionDrawable(rm.menuExitButton[0][0]);
         style.imageDown = new TextureRegionDrawable(rm.menuExitButton[1][0]);
         exitButton = new ImageButton(style);
-        exitButton.setScale(2);
+        exitButton.getImage().setScale(2);
+        exitButton.setSize(28, 28);
         exitButton.setPosition(354, 192);
         stage.addActor(exitButton);
 
@@ -121,8 +122,8 @@ public class VictoryScreen extends AbstractScreen {
         videoButton.setPosition((float)Unlucky.V_WIDTH / 2 - 120, 16);
         videoButton.setWidth(200);
         videoButton.setTouchable(Touchable.enabled);
-        stage.addActor(videoButton);
-        stage.addActor(videoLabel);
+//        stage.addActor(videoButton);
+//        stage.addActor(videoLabel);
 
         videoButton.addListener(new ClickListener() {
             @Override

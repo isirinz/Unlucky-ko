@@ -231,7 +231,7 @@ public class LevelUpScreen extends UI {
 
         gameScreen.getBatch().setProjectionMatrix(stage.getCamera().combined);
         gameScreen.getBatch().begin();
-        gameScreen.getBatch().draw(levelUpAnim.getKeyFrame(true), 23, 27, 192, 192);
+        gameScreen.getBatch().draw(levelUpAnim.getKeyFrame(true), 46, 52, 96, 96);
         gameScreen.getBatch().end();
     }
 

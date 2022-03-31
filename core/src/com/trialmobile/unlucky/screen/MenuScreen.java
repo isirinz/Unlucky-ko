@@ -275,7 +275,7 @@ public class MenuScreen extends MenuExtensionScreen {
         ImageButton.ImageButtonStyle videoAdStyle = new ImageButton.ImageButtonStyle();
         videoAdStyle.imageUp = new TextureRegionDrawable(rm.videoAdIcon);
         videoAdButton = new ImageButton(videoAdStyle);
-        stage.addActor(videoAdButton);
+//        stage.addActor(videoAdButton);
         videoAdButton.setPosition(80, 115);
         videoAdButton.addListener(new ClickListener() {
             @Override

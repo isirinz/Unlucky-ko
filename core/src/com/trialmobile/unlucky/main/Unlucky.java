@@ -40,7 +40,7 @@ public class Unlucky extends Game {
     public AppInterface appInterface;
 
     // Links
-    public static final String GITHUB = "https://github.com/mingli1/Unlucky";
+    public static final String GITHUB = "https://github.com/isirinz/unlucky-ko";
     public static final String YOUTUBE = "https://www.youtube.com/channel/UC-oA-vkeYrgEy23Sq2PLC8w/videos?shelf_id=0&sort=dd&view=0";
 
     // Desktop screen dimensions

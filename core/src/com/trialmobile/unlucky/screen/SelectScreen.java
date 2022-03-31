@@ -171,7 +171,8 @@ public abstract class SelectScreen extends AbstractScreen {
         style.imageDown = new TextureRegionDrawable(rm.menuExitButton[1][0]);
         exitButton = new ImageButton(style);
         exitButton.getImage().setScale(2);
-        exitButton.setPosition(354, 202);
+        exitButton.setSize(36, 36);
+        exitButton.setPosition(346, 192);
         stage.addActor(exitButton);
 
         // fade back to previous screen

@@ -136,7 +136,7 @@ public class WorldSelectScreen extends SelectScreen {
             g.addActor(name);
             g.addActor(desc);
 
-            selectionContainer.add(g).padBottom(8).size(180, 60).row();
+            selectionContainer.add(g).padBottom(8).padRight(2).size(180, 60).row();
         }
         selectionContainer.pack();
         selectionContainer.setTransform(false);

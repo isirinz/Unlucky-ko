@@ -96,8 +96,8 @@ public class InventoryUI extends UI {
         exitStyle.imageUp = new TextureRegionDrawable(rm.exitbutton18x18[0][0]);
         exitStyle.imageDown = new TextureRegionDrawable(rm.exitbutton18x18[1][0]);
         exitButton = new ImageButton(exitStyle);
+        exitButton.setSize(36, 36);
         exitButton.getImage().setScale(2);
-        exitButton.setSize(18, 18);
 
         // Fonts and Colors
         Label.LabelStyle[] labelColors = new Label.LabelStyle[] {
@@ -541,7 +541,7 @@ public class InventoryUI extends UI {
             public void clicked(InputEvent event, float x, float y) {
                 if (!game.player.settings.muteSfx) rm.buttonclick1.play(game.player.settings.sfxVolume);
                 if (currentItem != null) {
-                    new Dialog("Sell", rm.dialogSkin) {
+                    new Dialog(rm.bundle.get("SELL"), rm.dialogSkin) {
                         {
                             Label l = new Label(rm.bundle.format("DIALOG_SELL", currentItem.labelName), rm.dialogSkin);
                             l.setFontScale(0.5f);
@@ -916,7 +916,7 @@ public class InventoryUI extends UI {
         }
         else {
             // update all positions
-            exitButton.setPosition(ui.getX() + 362, ui.getY() + 202);
+            exitButton.setPosition(ui.getX() + 348, ui.getY() + 184);
             headers[0].setPosition(ui.getX() + 16, ui.getY() + 192);
             headers[1].setPosition(ui.getX() + 16, ui.getY() + 110);
             headers[2].setPosition(ui.getX() + 168, ui.getY() + 192);
