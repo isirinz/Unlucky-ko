@@ -4,10 +4,6 @@
 
 원본 : [Unlucky](https://github.com/mingli1/Unlucky)
 
-## Download
-
-[Google Play](https://play.google.com/store/apps/details?id=com.trialmobile.unlucky)
-
 ## Description
 
 턴제 전투 시스템을 갖춘 이 2D 롤플레잉 게임은 난수를 테마로 진행됩니다. 전투 중 공격부터 아이템 인챈트, 스킬까지 모든 것을 무작위로 합니다.
