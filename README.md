@@ -1,8 +1,8 @@
 # Unlucky-ko
 
-오픈소스 Unlucky 한글화 프로젝트
+오픈소스게임 Unlucky 한글화 프로젝트
 
-원본 : https://github.com/mingli1/Unlucky
+원본 : [Unlucky](https://github.com/mingli1/Unlucky)
 
 ## Description
 
