@@ -396,7 +396,7 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
         // bottom right
         if (index == 3) return new Vector2(308 - tooltip.getWidth(), 48 - tooltip.getHeight());
             // bottom left
-        else return new Vector2(276, 52 + tooltip.getHeight());
+        else return new Vector2(276, 20 + tooltip.getHeight());
     }
 
     private void unselectSlot() {

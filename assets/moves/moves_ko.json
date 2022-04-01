@@ -268,7 +268,7 @@
 	},
 	{
 		"type":1,
-		"name":"오라 오로라",
+		"name":"오로라 아우라",
 		"minDamage":1,
 		"maxDamage":6
 	},
@@ -292,7 +292,7 @@
 	},
 	{
 		"type":1,
-		"name":"팬텀 슬라이스",
+		"name":"환영 자르기",
 		"minDamage":1,
 		"maxDamage":8
 	},
