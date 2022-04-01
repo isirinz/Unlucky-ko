@@ -234,7 +234,7 @@ public class SettingsScreen extends MenuExtensionScreen {
             public void changed(ChangeEvent event, Actor actor) {
                 if (!game.player.settings.muteSfx) rm.buttonclick2.play(game.player.settings.sfxVolume);
                 boolean isChanged = false;
-                String old = prefs.getString("lang", "");
+                String old = prefs.getString("lang", "ko");
                 if ("ENGLISH".equalsIgnoreCase(language.getSelected())) {
                     if (!old.equals("en")) {
                         isChanged = true;
