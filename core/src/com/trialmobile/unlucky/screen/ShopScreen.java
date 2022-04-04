@@ -367,7 +367,38 @@ public class ShopScreen extends MenuExtensionScreen {
     }
 
     private void checkMyGold() {
+        String userId = prefs.getString("USER_ID");
+        if (userId == null || "".equals(userId.trim())) {
+            userId = UUID.randomUUID().toString();
+            prefs.putString("USER_ID", userId);
+            prefs.flush();
+        }
 
+        Net.HttpRequest httpRequest = new Net.HttpRequest();
+        httpRequest.setMethod("GET");
+        httpRequest.setUrl("http://photoquoteapp.gnqkd.com/postback/gold?user_id="+userId);
+        Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
+            @Override
+            public void handleHttpResponse(Net.HttpResponse httpResponse) {
+                String body = httpResponse.getResultAsString();
+                if (body != null && !"".equals(body.trim())) {
+                    try {
+                        int gold = Integer.parseInt(body.trim());
+                        player.addGold(gold);
+                        game.save.save();
+                    } catch (Exception ignore) {
+                    }
+                }
+            }
+
+            @Override
+            public void failed(Throwable t) {
+            }
+
+            @Override
+            public void cancelled() {
+            }
+        });
     }
     /**
      * Adds the necessary events to a given item

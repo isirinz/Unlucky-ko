@@ -19,10 +19,6 @@
         tools:ignore="UnusedAttribute"
         android:dataExtractionRules="@xml/data_extraction_rules">
 
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="${admobApplicationId}"/>
-
         <activity
             android:name="com.trialmobile.unlucky.AndroidLauncher"
             android:screenOrientation="landscape"

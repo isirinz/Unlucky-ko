@@ -1,28 +1,24 @@
 package com.trialmobile.unlucky;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.google.ads.mediation.unity.UnityAdapter;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
-import com.google.android.gms.ads.rewarded.RewardedAdCallback;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.resyp.offerwall.Resyp;
 
@@ -49,7 +45,7 @@ public class AndroidLauncher extends AndroidApplication implements AppInterface 
 		adView = new AdView(this);
 		adView.setVisibility(View.GONE);
 		adView.setAdSize(AdSize.BANNER);
-		adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+		adView.setAdUnitId(Constants.AD_UNIT_ID);
 
 		createAndLoadRewardedAd();
 
@@ -83,9 +79,7 @@ public class AndroidLauncher extends AndroidApplication implements AppInterface 
 
 	@Override
 	public void openOfferwall(String userId) {
-		runOnUiThread(() -> {
-			Resyp.openOfferwall(this, "55a94c2c-82da-4716-abf6-01fa66db2a01", userId);
-		});
+		runOnUiThread(() -> Resyp.openOfferwall(this, Constants.RESYP_MEDIA_CODE, userId));
 	}
 
 	@Override
@@ -94,49 +88,51 @@ public class AndroidLauncher extends AndroidApplication implements AppInterface 
 	}
 
 	private void createAndLoadRewardedAd() {
-		rewardedAd = new RewardedAd(this, "ca-app-pub-3940256099942544/5224354917");
-		RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback() {
+		Bundle extra = new Bundle();
+		AdRequest adRequest = new AdRequest.Builder()
+				.addNetworkExtrasBundle(UnityAdapter.class, extra)
+				.build();
+
+		RewardedAd.load(this, Constants.REWARDED_UNIT_ID, adRequest, new RewardedAdLoadCallback() {
 			@Override
-			public void onRewardedAdLoaded() {
-				// Ad successfully loaded.
+			public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+				super.onAdFailedToLoad(loadAdError);
+				rewardedAd = null;
 			}
+
 			@Override
-			public void onRewardedAdFailedToLoad(LoadAdError adError) {
-				// Ad failed to load.
+			public void onAdLoaded(@NonNull RewardedAd rewardedAd) {
+				super.onAdLoaded(rewardedAd);
+				AndroidLauncher.this.rewardedAd = rewardedAd;
+				AndroidLauncher.this.rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+					@Override
+					public void onAdDismissedFullScreenContent() {
+						super.onAdDismissedFullScreenContent();
+						createAndLoadRewardedAd();
+					}
+
+					@Override
+					public void onAdFailedToShowFullScreenContent(@NonNull AdError adError) {
+						super.onAdFailedToShowFullScreenContent(adError);
+					}
+
+					@Override
+					public void onAdShowedFullScreenContent() {
+						super.onAdShowedFullScreenContent();
+						AndroidLauncher.this.rewardedAd = null;
+					}
+				});
 			}
-		};
-		rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
+		});
 	}
 
 	@Override
 	public void showVideo(VideoCallback callback) {
 		runOnUiThread(() -> {
-			if (rewardedAd.isLoaded()) {
-				Activity activityContext = AndroidLauncher.this;
-				RewardedAdCallback adCallback = new RewardedAdCallback() {
-					@Override
-					public void onRewardedAdOpened() {
-						// Ad opened.
-					}
-
-					@Override
-					public void onRewardedAdClosed() {
-						createAndLoadRewardedAd();
-					}
-
-					@Override
-					public void onUserEarnedReward(@NonNull RewardItem reward) {
-						// User earned reward.
-						Log.d("AndroidLauncher", reward.getType() + "=" + reward.getAmount());
-						callback.success(reward.getType(), reward.getAmount());
-					}
-
-					@Override
-					public void onRewardedAdFailedToShow(AdError adError) {
-						// Ad failed to display.
-					}
-				};
-				rewardedAd.show(activityContext, adCallback);
+			if (rewardedAd != null) {
+				rewardedAd.show(this, rewardItem -> callback.success(rewardItem.getType(), rewardItem.getAmount()));
+			} else {
+				callback.noAd();
 			}
 		});
 	}

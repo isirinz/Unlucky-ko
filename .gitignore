@@ -116,3 +116,6 @@ Thumbs.db
 /ios/IOSLauncher.app.dSYM
 /*.jks
 /*.pepk
+/android/.gradle/
+/android/google/release/
+/android/onestore/release/

@@ -169,8 +169,30 @@ public class MenuScreen extends MenuExtensionScreen {
     private void showVideo() {
         game.appInterface.showVideo(new VideoCallback() {
             @Override
+            public void noAd() {
+                new Dialog(rm.bundle.get("DIALOG_REWARD"), rm.dialogSkin) {
+                    {
+                        getTitleLabel().setFontScale(0.5f);
+                        Label l = new Label(rm.bundle.get("NO_VIDEO"), rm.dialogSkin);
+                        l.setFontScale(0.5f);
+                        l.setAlignment(Align.center);
+                        text(l);
+                        getButtonTable().defaults().width(40);
+                        getButtonTable().defaults().height(15);
+                        button(rm.bundle.get("DIALOG_OK"), "next");
+                    }
+
+                    @Override
+                    protected void result(Object object) {
+                        if (!game.player.settings.muteSfx) rm.buttonclick2.play(game.player.settings.sfxVolume);
+                    }
+
+                }.show(stage).getTitleLabel().setAlignment(Align.center);
+            }
+
+            @Override
             public void success(String type, int amount) {
-                amount = 1000;
+                amount = 100 * Math.max(1, game.player.getLevel());
                 final int gold = amount;
                 game.player.addGold(amount);
                 game.save.save();
@@ -315,7 +337,7 @@ public class MenuScreen extends MenuExtensionScreen {
             ImageButton.ImageButtonStyle offerWallStyle = new ImageButton.ImageButtonStyle();
             offerWallStyle.imageUp = new TextureRegionDrawable(rm.offerWallIcon);
             offerWallButton = new ImageButton(offerWallStyle);
-            stage.addActor(offerWallButton);
+//            stage.addActor(offerWallButton);
             offerWallButton.setPosition(80, 45);
             offerWallButton.addListener(new ClickListener() {
                 @Override

@@ -11,22 +11,73 @@ android {
             jniLibs.srcDirs = ['libs']
         }
 
+        onestore {
+            manifest.srcFile 'onestore/AndroidManifest.xml'
+            java.srcDirs = ['onestore/src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['../assets']
+            jniLibs.srcDirs = ['libs']
+        }
+
+        google {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['google/src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['../assets']
+            jniLibs.srcDirs = ['libs']
+        }
     }
     packagingOptions {
         exclude 'META-INF/robovm/ios/robovm.xml'
     }
     defaultConfig {
         applicationId "com.trialmobile.unlucky"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 31
-        versionCode 3
-        versionName "1.1.1"
+        versionCode 4
+        versionName "1.1.2"
     }
+
+    signingConfigs {
+        releaseWithSignedKey {
+            storeFile file(SIGNED_STORE_FILE)
+            storePassword SIGNED_STORE_PASSWORD
+            keyAlias SIGNED_KEY_ALIAS
+            keyPassword SIGNED_KEY_PASSWORD
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseWithSignedKey
         }
+    }
+
+    flavorDimensions 'version'
+    productFlavors {
+        google {
+            dimension 'version'
+            manifestPlaceholders  = [admobApplicationId:"ca-app-pub-7962560807810932~6772227645"]
+            matchingFallbacks = ['google']
+        }
+        onestore {
+            dimension 'version'
+            matchingFallbacks = ['onestore']
+        }
+    }
+
+    dependencies {
+        googleImplementation 'androidx.work:work-runtime:2.7.1'
+        googleImplementation 'com.google.android.gms:play-services-ads:20.6.0'
+
+        implementation 'com.unity3d.ads:unity-ads:4.1.0'
+        googleImplementation 'com.google.ads.mediation:unity:4.1.0.0'
     }
 }
 
