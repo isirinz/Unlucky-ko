@@ -63,7 +63,7 @@ android {
     productFlavors {
         google {
             dimension 'version'
-            manifestPlaceholders  = [admobApplicationId:"ca-app-pub-7962560807810932~6772227645"]
+            manifestPlaceholders  = [admobApplicationId:ADMOB_APPLICATION_ID]
             matchingFallbacks = ['google']
         }
         onestore {
