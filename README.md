@@ -18,5 +18,9 @@
 
 전투 시스템은 턴제 방식을 기반으로 합니다. 플레이어는 다른 유형의 이동에 해당하는 각 색상으로 무작위로 생성된 4개의 기술을 받습니다. 플레이어는 또한 메뉴에서 선택할 수 있는 특수 스킬에 액세스할 수 있습니다. 특수 스킬은 플레이어의 공격에 보너스 효과를 주거나 적에게 영향을 줍니다. 플레이어는 매우 낮은 성공 확률로 전투에서 도망칠 수도 있습니다.
 
+## Issue
+
+RoboVM (iOS) 빌드시 ogg 파일을 지원하지 않는 문제가 있습니다.
+
 ## License
 This project is licensed under the [MIT License](https://github.com/mingli1/Unlucky/blob/master/LICENSE).
