@@ -75,7 +75,6 @@ android {
     dependencies {
         googleImplementation 'androidx.work:work-runtime:2.7.1'
         googleImplementation 'com.google.android.gms:play-services-ads:20.6.0'
-
         implementation 'com.unity3d.ads:unity-ads:4.1.0'
         googleImplementation 'com.google.ads.mediation:unity:4.1.0.0'
     }
