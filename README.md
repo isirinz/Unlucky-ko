@@ -8,6 +8,8 @@
 
 [구글플레이](https://play.google.com/store/apps/details?id=com.trialmobile.unlucky)
 
+[원스토어](https://m.onestore.co.kr/mobilepoc/apps/appsDetail.omp?prodId=0000761898)
+
 ## Description
 
 턴제 전투 시스템을 갖춘 이 2D 롤플레잉 게임은 난수를 테마로 진행됩니다. 전투 중 공격부터 아이템 인챈트, 스킬까지 모든 것을 무작위로 합니다.
