@@ -13,6 +13,7 @@ import com.trialmobile.unlucky.entity.Player;
 import com.trialmobile.unlucky.event.EventState;
 import com.trialmobile.unlucky.inventory.Inventory;
 import com.trialmobile.unlucky.inventory.Item;
+import com.trialmobile.unlucky.main.Unlucky;
 import com.trialmobile.unlucky.resource.ResourceManager;
 import com.trialmobile.unlucky.resource.Util;
 import com.trialmobile.unlucky.screen.GameScreen;
@@ -310,7 +311,7 @@ public class GameMap {
                         rm.thunder.play(player.settings.sfxVolume);
                         sfxPlayed = true;
                     }
-                    batch.draw(rm.lightning, player.getPosition().x - 364, player.getPosition().y - 204);
+                    batch.draw(rm.lightning, player.getPosition().x - 364, player.getPosition().y - 204, rm.lightning.getRegionWidth() * 2, rm.lightning.getRegionHeight() * 2);
                 }
                 if (durationTime > 0.2f) {
                     lightningTime = 0;
@@ -323,7 +324,7 @@ public class GameMap {
 
         if (renderLight) {
             batch.setBlendFunction(GL20.GL_DST_COLOR, GL20.GL_ONE_MINUS_SRC_ALPHA);
-            batch.draw(rm.darkness, player.getPosition().x - 364, player.getPosition().y - 204);
+            batch.draw(rm.darkness, player.getPosition().x - 364, player.getPosition().y - 204, rm.darkness.getRegionWidth() * 2, rm.darkness.getRegionHeight() * 2);
             batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         }
     }
