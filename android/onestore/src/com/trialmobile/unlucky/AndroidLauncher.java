@@ -18,7 +18,7 @@ import com.unity3d.ads.UnityAdsShowOptions;
 import com.unity3d.services.banners.BannerView;
 import com.unity3d.services.banners.UnityBannerSize;
 
-public class OneAndroidLauncher extends AndroidApplication implements AppInterface, IUnityAdsInitializationListener {
+public class AndroidLauncher extends AndroidApplication implements AppInterface, IUnityAdsInitializationListener {
 
 	private BannerView bottomBanner;
 

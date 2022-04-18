@@ -45,3 +45,7 @@
    **[] $VALUES;
     *;
 }
+
+-keep class com.trialmobile.save.** {
+   *;
+}
