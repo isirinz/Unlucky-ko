@@ -20,14 +20,13 @@ public class AnimationManager {
     // for multi-directional animations
     // 0 - up, 1 - down, 2 - left, 3 - right
     private CustomAnimation[] animations;
-    private TextureRegion[][] animationFrames;
 
     /**
      * Sets up for single animations
      *
      * @param sprites 2d array of sprites so that different sized animations can be used
      * @param numFrames the amount of frames in the single animation
-     * @param delay
+     * @param delay delay
      */
     public AnimationManager(TextureRegion[][] sprites, int numFrames, int index, float delay) {
         TextureRegion[] frames = new TextureRegion[numFrames];
@@ -35,9 +34,7 @@ public class AnimationManager {
         width = sprites[index][0].getRegionWidth();
         height = sprites[index][0].getRegionHeight();
 
-        for (int i = 0; i < numFrames; i++) {
-            frames[i] = sprites[index][i];
-        }
+        System.arraycopy(sprites[index], 0, frames, 0, numFrames);
 
         currentAnimation = new CustomAnimation(delay, frames);
     }
@@ -46,11 +43,11 @@ public class AnimationManager {
      * Sets up for animations based on world index
      * Used for storing multiple animations on a single row sorted by worlds
      *
-     * @param sprites
-     * @param worldIndex
-     * @param startIndex
-     * @param numFrames
-     * @param delay
+     * @param sprites region[][]
+     * @param worldIndex index
+     * @param startIndex start
+     * @param numFrames frames
+     * @param delay delay
      */
     public AnimationManager(TextureRegion[][] sprites, int worldIndex, int startIndex, int numFrames, float delay) {
         TextureRegion[] frames = new TextureRegion[numFrames];
@@ -58,9 +55,7 @@ public class AnimationManager {
         width = sprites[worldIndex][startIndex].getRegionWidth();
         height = sprites[worldIndex][startIndex].getRegionHeight();
 
-        for (int i = startIndex; i < startIndex + numFrames; i++) {
-            frames[i - startIndex] = sprites[worldIndex][i];
-        }
+        System.arraycopy(sprites[worldIndex], startIndex, frames, 0, startIndex + numFrames - startIndex);
 
         currentAnimation = new CustomAnimation(delay, frames);
     }
@@ -68,13 +63,13 @@ public class AnimationManager {
     /**
      * Specifically handles four directional animations animations
      *
-     * @param sprites
-     * @param index
-     * @param delay
+     * @param sprites region[][]
+     * @param index index
+     * @param delay delay
      */
     public AnimationManager(TextureRegion[][] sprites, int index, float delay) {
         animations = new CustomAnimation[4];
-        animationFrames = new TextureRegion[4][4];
+        TextureRegion[][] animationFrames = new TextureRegion[4][4];
 
         width = sprites[index][0].getRegionWidth();
         height = sprites[index][0].getRegionHeight();
@@ -100,7 +95,7 @@ public class AnimationManager {
     /**
      * Sets currentAnimation to an animation established in the animation array
      *
-     * @param index
+     * @param index index
      */
     public void setAnimation(int index) {
         currentAnimation = animations[index];

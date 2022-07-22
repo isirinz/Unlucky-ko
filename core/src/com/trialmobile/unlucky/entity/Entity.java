@@ -95,7 +95,7 @@ public abstract class Entity {
     /**
      * An entity's hp is decreased by damage taken
      *
-     * @param damage
+     * @param damage damage
      */
     public void hit(int damage) {
         this.damage = damage;
@@ -104,7 +104,7 @@ public abstract class Entity {
     /**
      * An entity's hp is increased by healing
      *
-     * @param healing
+     * @param healing healing
      */
     public void heal(int healing) {
         this.healing = healing;
@@ -113,7 +113,7 @@ public abstract class Entity {
     /**
      * Adds a shield to the entity's health bar
      *
-     * @param mshield
+     * @param mshield shield
      */
     public void setShield(int mshield) {
         hasShield = true;
@@ -276,7 +276,7 @@ public abstract class Entity {
 
     /**
      * Returns the tile the Entity is currently standing on
-     * @return
+     * @return tile
      */
     public Tile getCurrentTile() {
         return tileMap.getTile(tileMap.toTileCoords(position));
@@ -313,8 +313,8 @@ public abstract class Entity {
     /**
      * Returns if the entity's hp is below or equal to a certain threshold
      *
-     * @param percentage
-     * @return
+     * @param percentage percentage
+     * @return boolean
      */
     public boolean healthBelow(int percentage) {
         return hp <= (int) ((percentage / 100f) * (float) maxHp);

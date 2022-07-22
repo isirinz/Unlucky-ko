@@ -38,7 +38,7 @@ public class ResourceManager {
     public String lang;
     public AssetManager assetManager;
     // json
-    private JsonReader jsonReader;
+    private final JsonReader jsonReader;
 
     // Texture Atlas that contains every sprite
     public TextureAtlas atlas;
@@ -138,22 +138,22 @@ public class ResourceManager {
     public Sound battlestart;
 
     // Worlds
-    public Array<World> worlds = new Array<World>();
+    public Array<World> worlds = new Array<>();
 
     // Arrays for each type of Move
     // Contains the entire pool of moves for each type
-    public final Array<Move> accurateMoves = new Array<Move>();
-    public final Array<Move> wideMoves = new Array<Move>();
-    public final Array<Move> critMoves = new Array<Move>();
-    public final Array<Move> healMoves = new Array<Move>();
+    public final Array<Move> accurateMoves = new Array<>();
+    public final Array<Move> wideMoves = new Array<>();
+    public final Array<Move> critMoves = new Array<>();
+    public final Array<Move> healMoves = new Array<>();
 
     // contains the movepools of each boss referenced by bossIndex
-    public final Array<Array<Move>> bossMoves = new Array<Array<Move>>();
+    public final Array<Array<Move>> bossMoves = new Array<>();
 
     // contains all the items separated by rarity
-    public final Array<Array<Item>> items = new Array<Array<Item>>();
+    public final Array<Array<Item>> items = new Array<>();
     // contains all the shop items separated by rarity
-    public final Array<Array<ShopItem>> shopItems = new Array<Array<ShopItem>>();
+    public final Array<Array<ShopItem>> shopItems = new Array<>();
 
     // Fonts
     public final BitmapFont pixel10;
@@ -339,8 +339,8 @@ public class ResourceManager {
     /**
      * Loads the ImageButton styles for buttons with up and down image effects
      *
-     * @param numButtons
-     * @param sprites
+     * @param numButtons int
+     * @param sprites textureRegion
      * @return a style array for ImageButtons
      */
     public ImageButton.ImageButtonStyle[] loadImageButtonStyles(int numButtons, TextureRegion[][] sprites) {
@@ -410,7 +410,7 @@ public class ResourceManager {
         }
         //System.out.println("heal: " + healMoves.size);
 
-        Array<Move> slimeMoves = new Array<Move>();
+        Array<Move> slimeMoves = new Array<>();
         // load boss moves
         for (JsonValue move : boss.get("slime")) {
             if (move.getInt("type") == 1)
@@ -422,7 +422,7 @@ public class ResourceManager {
         }
         bossMoves.add(slimeMoves);
 
-        Array<Move> rrMoves = new Array<Move>();
+        Array<Move> rrMoves = new Array<>();
         // load boss moves
         for (JsonValue move : boss.get("redreaper")) {
             if (move.getInt("type") == 2)
@@ -434,7 +434,7 @@ public class ResourceManager {
         }
         bossMoves.add(rrMoves);
 
-        Array<Move> igMoves = new Array<Move>();
+        Array<Move> igMoves = new Array<>();
         for (JsonValue move : boss.get("icegolem")) {
             if (move.getInt("type") == 0)
                 igMoves.add(new Move(0, move.getString("name"),
@@ -457,7 +457,7 @@ public class ResourceManager {
     }
 
     private void loadItems(JsonValue itemPool, int rarity, String r) {
-        Array<Item> rare = new Array<Item>();
+        Array<Item> rare = new Array<>();
         for (JsonValue i : itemPool.get(r)) {
             int type = i.getInt("type");
             if (type == 0) {
@@ -483,7 +483,7 @@ public class ResourceManager {
     }
 
     private void loadShopItems(JsonValue itemPool, int rarity, String r) {
-        Array<ShopItem> rare = new Array<ShopItem>();
+        Array<ShopItem> rare = new Array<>();
         for (JsonValue i : itemPool.get(r)) {
             int type = i.getInt("type");
             if (type == 0) {
@@ -521,14 +521,14 @@ public class ResourceManager {
      * Used for monster drops based on enemy level
      * Returns null if no item that fits the level
      *
-     * @param rarity
-     * @param level
-     * @return
+     * @param rarity rarity
+     * @param level level
+     * @return item
      */
     public Item getItem(int rarity, int level) {
         // items sorted by level range and rarity
         Array<Item> levelItems = new Array<Item>();
-        for (Item item : items.get(rarity)) {
+        for (Item item : new Array.ArrayIterator<>(items.get(rarity))) {
             if (level >= item.minLevel && level <= item.maxLevel) {
                 levelItems.add(item);
             }
@@ -542,8 +542,8 @@ public class ResourceManager {
      * Returns a copy of a random item from the item pool given rarity
      * This was made so that duplicate Item actors could be created
      *
-     * @param rarity
-     * @return
+     * @param rarity rarity
+     * @return item
      */
     public Item getItem(int rarity) {
         Item item = items.get(rarity).get(MathUtils.random(items.get(rarity).size - 1));
@@ -553,9 +553,9 @@ public class ResourceManager {
     /**
      * Returns a copy of an indexed Item from the item pool
      *
-     * @param rarity
-     * @param index
-     * @return
+     * @param rarity rarity
+     * @param index index
+     * @return item
      */
     public Item getItemFromKey(int rarity, int index) {
         Item item = items.get(rarity).get(index);
@@ -564,8 +564,8 @@ public class ResourceManager {
 
     /**
      * Returns a random Item from the pool with weighted rarity and in a given level range
-     * @param level
-     * @return
+     * @param level level
+     * @return item
      */
     public Item getRandomItem(int level) {
         int k = MathUtils.random(99);
@@ -584,7 +584,7 @@ public class ResourceManager {
     /**
      * Returns a random Item from the item pool with weighted rarity
      *
-     * @return
+     * @return item
      */
     public Item getRandomItem() {
         int k = MathUtils.random(99);
@@ -603,7 +603,7 @@ public class ResourceManager {
     /**
      * Returns a random Item from the item pool regardless of rarity
      *
-     * @return
+     * @return item
      */
     public Item getRandomItemFromPool() {
         return getItem(MathUtils.random(3));
@@ -611,7 +611,7 @@ public class ResourceManager {
 
     /**
      * Sets the volume of all music in the game
-     * @param volume
+     * @param volume volume
      */
     public void setMusicVolume(float volume) {
         menuTheme.setVolume(volume);

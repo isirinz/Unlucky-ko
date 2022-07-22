@@ -17,7 +17,7 @@ public class SpecialMoveset {
     public Array<SpecialMove> smoveset;
 
     public SpecialMoveset() {
-        smoveset = new Array<SpecialMove>();
+        smoveset = new Array<>();
     }
 
     /**

@@ -8,12 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
@@ -137,8 +132,8 @@ public abstract class SelectScreen extends AbstractScreen {
     /**
      * Renders the background and stage actors
      *
-     * @param dt
-     * @param index
+     * @param dt delta
+     * @param index index
      */
     public void render(float dt, int index) {
         update(dt);
@@ -190,10 +185,10 @@ public abstract class SelectScreen extends AbstractScreen {
      * Selects the button from the scroll pane at a given index
      * and unselects all buttons that are not at the index
      *
-     * @param index
+     * @param index index
      */
     protected void selectAt(int index) {
-        for (TextButton t : scrollButtons) {
+        for (TextButton t : new Array.ArrayIterator<>(scrollButtons)) {
             if (t.isChecked()) t.setChecked(false);
         }
         scrollButtons.get(index).setChecked(true);

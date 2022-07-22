@@ -11,7 +11,7 @@ import com.trialmobile.unlucky.resource.ResourceManager;
  */
 public class Moveset {
 
-    private ResourceManager rm;
+    private final ResourceManager rm;
 
     /**
      * Index:
@@ -78,12 +78,12 @@ public class Moveset {
      * Returns the first damage move from a moveset
      * If there are no damage moves then it returns a random heal move
      *
-     * @return
+     * @return move
      */
     public Move getDamagePriority() {
-        for (int i = 0; i < moveset.length; i++) {
-            if (moveset[i].type != 3) {
-                return moveset[i];
+        for (Move move : moveset) {
+            if (move.type != 3) {
+                return move;
             }
         }
         return moveset[MathUtils.random(3)];
@@ -93,12 +93,12 @@ public class Moveset {
      * Returns the first heal move from a moveset
      * If there are no heal moves, then it returns a random move
      *
-     * @return
+     * @return move
      */
     public Move getHealPriority() {
-        for (int i = 0; i < moveset.length; i++) {
-            if (moveset[i].type == 3) {
-                return moveset[i];
+        for (Move move : moveset) {
+            if (move.type == 3) {
+                return move;
             }
         }
         return moveset[MathUtils.random(3)];
@@ -107,7 +107,7 @@ public class Moveset {
     /**
      * Returns a Move array with 4 unique moves chosen from all possible Moves
      *
-     * @return
+     * @return move[]
      */
     private Move[] getRandomMoves() {
         Array<Move> all = new Array<Move>();
@@ -141,8 +141,8 @@ public class Moveset {
     /**
      * Returns a Move array with 4 unique moves from a boss's movepool
      *
-     * @param bossId
-     * @return
+     * @param bossId boss
+     * @return move[]
      */
     private Move[] getBossMoves(int bossId) {
         Array<Move> pool = rm.bossMoves.get(bossId);

@@ -79,7 +79,7 @@ public class TileMap {
     public int weather;
 
     // res
-    private ResourceManager rm;
+    private final ResourceManager rm;
 
     public TileMap(int tileSize, String path, Vector2 origin, ResourceManager rm) {
         this.tileSize = tileSize;
@@ -209,7 +209,7 @@ public class TileMap {
     private void createTopLayer() {
         // get boolean hasTopLayer
         int h = Integer.parseInt(mapInfoLines[2 * mapHeight + 6]);
-        hasTopLayer = h == 1 ? true : false;
+        hasTopLayer = h == 1;
         if (!hasTopLayer) return;
 
         for (int i = 2 * mapHeight + 7; i < 3 * mapHeight + 7; i++) {
@@ -232,12 +232,12 @@ public class TileMap {
     }
 
     public void update(float dt) {
-        for (int i = 0; i < tileMap.length; i++) {
-            if (tileMap[i].containsEntity()) {
-                tileMap[i].getEntity().update(dt);
+        for (Tile tile : tileMap) {
+            if (tile.containsEntity()) {
+                tile.getEntity().update(dt);
             }
-            if (tileMap[i].animated) {
-                tileMap[i].anim.update(dt);
+            if (tile.animated) {
+                tile.anim.update(dt);
             }
         }
     }
@@ -274,7 +274,7 @@ public class TileMap {
     /**
      * Renders the image representation of the map
      *
-     * @param batch
+     * @param batch springBatch
      */
     public void render(SpriteBatch batch, OrthographicCamera cam) {
         for (int i = 0; i < tileMap.length; i++) {
@@ -292,7 +292,7 @@ public class TileMap {
     /**
      * Renders the top layer on top of the map
      *
-     * @param batch
+     * @param batch springBatch
      */
     public void renderTopLayer(SpriteBatch batch, OrthographicCamera cam) {
         for (int i = 0; i < topLayer.length; i++) {
@@ -309,7 +309,7 @@ public class TileMap {
     /**
      * Converts a tile id corresponding to an animated tile to its animated tile format
      *
-     * @param id
+     * @param id id
      * @return a String with the animated tile id in the correct format
      */
     private String getAnimatedTileConversion(String id) {
@@ -355,9 +355,9 @@ public class TileMap {
     /**
      * Adds an Entity to a specific tile on the map
      *
-     * @param entity
-     * @param tileX
-     * @param tileY
+     * @param entity entity
+     * @param tileX x
+     * @param tileY y
      */
     public void addEntity(Entity entity, int tileX, int tileY) {
         tileMap[tileY * mapWidth + tileX].addEntity(entity);
@@ -366,8 +366,8 @@ public class TileMap {
     /**
      * Vector2 version
      *
-     * @param entity
-     * @param coords
+     * @param entity entity
+     * @param coords vector2
      */
     public void addEntity(Entity entity, Vector2 coords) {
         tileMap[(int) (coords.y * mapWidth + coords.x)].addEntity(entity);
@@ -376,8 +376,8 @@ public class TileMap {
     /**
      * Removes an Entity at a specific tile on the map
      *
-     * @param tileX
-     * @param tileY
+     * @param tileX x
+     * @param tileY y
      */
     public void removeEntity(int tileX, int tileY) {
         tileMap[tileY * mapWidth + tileX].removeEntity();
@@ -386,7 +386,7 @@ public class TileMap {
     /**
      * Vector2 version
      *
-     * @param coords
+     * @param coords vector2
      */
     public void removeEntity(Vector2 coords) {
         tileMap[(int) (coords.y * mapWidth + coords.x)].removeEntity();
@@ -395,9 +395,9 @@ public class TileMap {
     /**
      * Gets an Entity from a specific tile on the map
      *
-     * @param tileX
-     * @param tileY
-     * @return
+     * @param tileX x
+     * @param tileY y
+     * @return entity
      */
     public Entity getEntity(int tileX, int tileY) {
         return tileMap[tileY * mapWidth + tileX].getEntity();
@@ -406,8 +406,8 @@ public class TileMap {
     /**
      * Vector2 version
      *
-     * @param coords
-     * @return
+     * @param coords vector2
+     * @return entity
      */
     public Entity getEntity(Vector2 coords) {
         return tileMap[(int) (coords.y * mapWidth + coords.x)].getEntity();
@@ -416,9 +416,9 @@ public class TileMap {
     /**
      * Determines if there's an Entity on a specific tile on the map
      *
-     * @param tileX
-     * @param tileY
-     * @return
+     * @param tileX x
+     * @param tileY y
+     * @return boolean
      */
     public boolean containsEntity(int tileX, int tileY) {
         return tileMap[tileY * mapWidth + tileX].containsEntity();
@@ -427,8 +427,8 @@ public class TileMap {
     /**
      * Vector2 version
      *
-     * @param coords
-     * @return
+     * @param coords vector2
+     * @return boolean
      */
     public boolean containsEntity(Vector2 coords) {
         return tileMap[(int) (coords.y * mapWidth + coords.x)].containsEntity();
@@ -437,8 +437,8 @@ public class TileMap {
     /**
      * Replaces a Tile on a tile map
      *
-     * @param tileX
-     * @param tileY
+     * @param tileX x
+     * @param tileY y
      */
     public void setTile(int tileX, int tileY, Tile tile) {
         tileMap[tileY * mapWidth + tileX] = tile;
@@ -447,8 +447,8 @@ public class TileMap {
     /**
      * Replaces a Tile on the map
      *
-     * @param tilePosition
-     * @param tile
+     * @param tilePosition vector2
+     * @param tile tile
      */
     public void setTile(Vector2 tilePosition, Tile tile) {
         tileMap[(int) (tilePosition.y * mapWidth + tilePosition.x)] = tile;
@@ -457,9 +457,9 @@ public class TileMap {
     /**
      * Replaces a Tile by tile id
      *
-     * @param tileX
-     * @param tileY
-     * @param id
+     * @param tileX x
+     * @param tileY y
+     * @param id id
      */
     public void setTile(int tileX, int tileY, int id) {
         int r = id / rm.tiles16x16[0].length;
@@ -470,9 +470,9 @@ public class TileMap {
     /**
      * Converts tile coordinates to map coordinates
      *
-     * @param tileX
-     * @param tileY
-     * @return
+     * @param tileX x
+     * @param tileY y
+     * @return vector2
      */
     public Vector2 toMapCoords(int tileX, int tileY) {
         return new Vector2(tileX * tileSize, tileY * tileSize);
@@ -485,12 +485,12 @@ public class TileMap {
     /**
      * Converts map coordinates to tile coordinates
      *
-     * @param mapX
-     * @param mapY
-     * @return
+     * @param mapX x
+     * @param mapY y
+     * @return vector2
      */
     public Vector2 toTileCoords(int mapX, int mapY) {
-        return new Vector2(mapX / tileSize, mapY / tileSize);
+        return new Vector2((float)mapX / tileSize, (float)mapY / tileSize);
     }
 
     public Vector2 toTileCoords(Vector2 coords) {
@@ -513,12 +513,12 @@ public class TileMap {
     /**
      * Does the tile map contain some Tile?
      *
-     * @param tile
+     * @param tile tile
      * @return Boolean
      */
     public boolean mapContains(Tile tile) {
-        for (int i = 0; i < tileMap.length; i++) {
-            if (tileMap[i].equals(tile)) return true;
+        for (Tile value : tileMap) {
+            if (value.equals(tile)) return true;
         }
         return false;
     }
@@ -526,12 +526,12 @@ public class TileMap {
     /**
      * Does the tile map contain a Tile that has a given id?
      *
-     * @param id
+     * @param id id
      * @return Boolean
      */
     public boolean mapContains(int id) {
-        for (int i = 0; i < tileMap.length; i++) {
-            if (tileMap[i].id == id) return true;
+        for (Tile tile : tileMap) {
+            if (tile.id == id) return true;
         }
         return false;
     }
@@ -540,14 +540,14 @@ public class TileMap {
      * Returns a list of teleportation tiles on the map not including
      * the one the player is currently standing on
      *
-     * @param currentTile
-     * @return
+     * @param currentTile title
+     * @return array
      */
     public Array<Tile> getTeleportationTiles(Tile currentTile) {
         Array<Tile> ret = new Array<Tile>();
-        for (int i = 0; i < tileMap.length; i++) {
-            if (tileMap[i].isTeleport() && !tileMap[i].equals(currentTile)) {
-                ret.add(tileMap[i]);
+        for (Tile tile : tileMap) {
+            if (tile.isTeleport() && !tile.equals(currentTile)) {
+                ret.add(tile);
             }
         }
         return ret;

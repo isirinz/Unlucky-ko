@@ -376,7 +376,7 @@ public class ShopScreen extends MenuExtensionScreen {
 
         Net.HttpRequest httpRequest = new Net.HttpRequest();
         httpRequest.setMethod("GET");
-        httpRequest.setUrl("http://photoquoteapp.gnqkd.com/postback/gold?user_id="+userId);
+        httpRequest.setUrl("https://photoquoteapp.gnqkd.com/postback/gold?user_id="+userId);
         Gdx.net.sendHttpRequest(httpRequest, new Net.HttpResponseListener() {
             @Override
             public void handleHttpResponse(Net.HttpResponse httpResponse) {

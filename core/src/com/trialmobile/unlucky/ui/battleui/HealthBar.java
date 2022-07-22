@@ -14,23 +14,23 @@ import com.trialmobile.unlucky.resource.Util;
  */
 public class HealthBar {
 
-    private Stage stage;
-    private ShapeRenderer shapeRenderer;
+    private final Stage stage;
+    private final ShapeRenderer shapeRenderer;
 
     private Entity entity;
 
     // hp bar rectangles
-    private float maxHpBarWidth;
+    private final float maxHpBarWidth;
     private float hpBarWidth;
-    private float hpBarHeight;
-    private Vector2 position;
+    private final float hpBarHeight;
+    private final Vector2 position;
     // the pure color of the health bar (top rect)
-    private Color color;
+    private final Color color;
 
     // damage or heal health bar animation
     private float decayingHpBarWidth = 0;
-    private Color damageColor = new Color(1, 0, 0, 1);
-    private Color healColor = new Color(70 / 255.f, 190 / 255.f, 1, 1);
+    private final Color damageColor = new Color(1, 0, 0, 1);
+    private final Color healColor = new Color(70 / 255.f, 190 / 255.f, 1, 1);
     private boolean initialized = false;
 
     public HealthBar(Entity entity, Stage stage, ShapeRenderer shapeRenderer, int max, int hpBarHeight, Vector2 position, Color color) {
@@ -110,7 +110,7 @@ public class HealthBar {
      * For healing, a blue rectangle spans from an entity's original hp to its increased hp
      * and its health bar increases until the blue bar disappears.
      *
-     * @param dt
+     * @param dt delta
      */
     public void render(float dt) {
         shapeRenderer.setProjectionMatrix(stage.getCamera().combined);

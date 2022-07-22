@@ -35,26 +35,17 @@ import com.trialmobile.unlucky.ui.smove.SMoveTooltip;
  */
 public class SpecialMoveScreen extends MenuExtensionScreen {
 
-    private Player player;
-
-    // screen banner
-    private Image banner;
-    private Label bannerLabel;
-
-    // bg layer
-    private Image bg;
+    private final Player player;
 
     // ui
-    private Label.LabelStyle white;
-    private Label.LabelStyle red;
-    private Label.LabelStyle green;
-    private Label.LabelStyle headerStyle;
-    private Label turnPrompt;
-    // the smove slots to be arranged in a pentagon
-    private Image[] slots;
-    private Array<Image> garbage;
-    private SMoveTooltip tooltip;
-    private Image selectedSlot;
+    private final Label.LabelStyle white;
+    private final Label.LabelStyle red;
+    private final Label.LabelStyle green;
+    private final Label.LabelStyle headerStyle;
+    private final Label turnPrompt;
+    private final Array<Image> garbage;
+    private final SMoveTooltip tooltip;
+    private final Image selectedSlot;
     // 0 - add button, 1 - remove button
     private ImageButton[] smoveButtons;
     private Label[] smoveButtonLabels;
@@ -63,15 +54,12 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
     private ImageButton.ImageButtonStyle[] removeButtonStyle;
     private SpecialMove smoveToAdd = null;
     private int smoveToRemove = -1;
-    private Label smoveset;
 
     // scroll pane
     private Table scrollTable;
-    private Table selectionContainer;
-    private ScrollPane scrollPane;
 
     // dialogs
-    private Dialog warningFullDialog;
+    private final Dialog warningFullDialog;
 
     public SpecialMoveScreen(final Unlucky game, final ResourceManager rm) {
         super(game, rm);
@@ -85,12 +73,13 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
         headerStyle = new Label.LabelStyle(rm.pixel10, new Color(1, 150 / 255.f, 66 / 255.f, 1));
 
         // create banner
-        banner = new Image(rm.skin, "default-slider");
+        // screen banner
+        Image banner = new Image(rm.skin, "default-slider");
         banner.setPosition(16, 204);
         banner.setSize(328, 24);
         stage.addActor(banner);
 
-        bannerLabel = new Label(rm.bundle.get("MANAGE_SPECIAL_MOVES"), rm.skin);
+        Label bannerLabel = new Label(rm.bundle.get("MANAGE_SPECIAL_MOVES"), rm.skin);
         bannerLabel.setStyle(headerStyle);
         bannerLabel.setSize(100, 24);
         bannerLabel.setTouchable(Touchable.disabled);
@@ -116,7 +105,8 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
         });
 
         // create bg
-        bg = new Image(rm.skin, "default-slider");
+        // bg layer
+        Image bg = new Image(rm.skin, "default-slider");
         bg.setPosition(16, 12);
         bg.setSize(368, 184);
         bg.setTouchable(Touchable.enabled);
@@ -129,7 +119,8 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
         stage.addActor(turnPrompt);
 
         // create slots
-        slots = new Image[SpecialMoveset.MAX_MOVES];
+        // the smove slots to be arranged in a pentagon
+        Image[] slots = new Image[SpecialMoveset.MAX_MOVES];
         for (int i = 0; i < slots.length; i++) {
             slots[i] = new Image(rm.smoveSlots[0]);
             Vector2 pos = getSlotPositions(i);
@@ -156,7 +147,7 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
             }
         });
 
-        smoveset = new Label(rm.bundle.get("SPECIAL_MOVESET"), headerStyle);
+        Label smoveset = new Label(rm.bundle.get("SPECIAL_MOVESET"), headerStyle);
         smoveset.setFontScale(0.5f);
         smoveset.setPosition(280, 84);
         smoveset.setAlignment(Align.center);
@@ -313,7 +304,7 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
      */
     private void addSmoveActors() {
         // clear garbage and remove from stage
-        for (Image i : garbage) i.remove();
+        for (Image i : new Array.ArrayIterator<>(garbage)) i.remove();
         garbage.clear();
         Array<SpecialMove> set = player.smoveset.smoveset;
         for (int i = 0; i < set.size; i++) {
@@ -330,8 +321,8 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
     /**
      * Returns the positions of the slot at a given smove index
      *
-     * @param index
-     * @return
+     * @param index index
+     * @return position
      */
     private Vector2 getSlotPositions(int index) {
         // middle left
@@ -348,8 +339,8 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
 
     /**
      * Shows the smove tooltip and enables the remove button
-     * @param icon
-     * @param index
+     * @param icon image
+     * @param index index
      */
     private void addSmoveEvent(final Image icon, final int index, final SpecialMove smove) {
         final Vector2 pos = getSlotPositions(index);
@@ -414,7 +405,7 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
         scrollTable = new Table();
         scrollTable.setFillParent(true);
         stage.addActor(scrollTable);
-        selectionContainer = new Table();
+        Table selectionContainer = new Table();
 
         ButtonGroup<TextButton> bg = new ButtonGroup<>();
         bg.setMaxCheckCount(1);
@@ -472,7 +463,7 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
         selectionContainer.setOrigin(selectionContainer.getWidth() / 2,
             selectionContainer.getHeight() / 2);
 
-        scrollPane = new ScrollPane(selectionContainer, rm.skin);
+        ScrollPane scrollPane = new ScrollPane(selectionContainer, rm.skin);
         scrollPane.setScrollingDisabled(true, false);
         scrollPane.setFadeScrollBars(true);
         // remove scroll bar
@@ -484,8 +475,8 @@ public class SpecialMoveScreen extends MenuExtensionScreen {
 
     /**
      * Handles button checked events for the smove scroll pane
-     * @param button
-     * @param smove
+     * @param button button
+     * @param smove move
      */
     private void addScrollPaneEvents(final TextButton button, final SpecialMove smove) {
         button.addListener(new ChangeListener() {

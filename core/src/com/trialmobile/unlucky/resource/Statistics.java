@@ -92,8 +92,8 @@ public class Statistics {
     /**
      * Considers a candidate stat and checks if it's greater than the current max stat
      *
-     * @param maxStat
-     * @param candidate
+     * @param maxStat maxStat
+     * @param candidate candidate
      */
     public void updateMax(MaxStat maxStat, int candidate) {
         if (candidate > maxStat.stat) {
@@ -103,7 +103,7 @@ public class Statistics {
 
     /**
      * Returns a list of statistics descriptions
-     * @return
+     * @return string[]
      */
     public String[] getDescList() {
         return new String[] {
@@ -146,7 +146,7 @@ public class Statistics {
 
     /**
      * Returns a list of statistics numbers
-     * @return
+     * @return string[]
      */
     public String[] getStatsList() {
         return new String[] {

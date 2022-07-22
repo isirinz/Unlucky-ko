@@ -14,7 +14,7 @@ import com.trialmobile.unlucky.main.Unlucky;
 public class Background {
 
     public TextureRegion image;
-    private OrthographicCamera cam;
+    private final OrthographicCamera cam;
     public Vector2 scale;
 
     private float ax;
@@ -52,7 +52,7 @@ public class Background {
      * Fixes the slight 1 pixel offset when moving the background to create
      * a smooth cycling image
      *
-     * @param region
+     * @param region region
      */
     public void fixBleeding(TextureRegion region) {
         float fix = 0.01f;

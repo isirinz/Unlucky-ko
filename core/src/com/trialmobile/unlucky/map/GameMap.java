@@ -13,7 +13,6 @@ import com.trialmobile.unlucky.entity.Player;
 import com.trialmobile.unlucky.event.EventState;
 import com.trialmobile.unlucky.inventory.Inventory;
 import com.trialmobile.unlucky.inventory.Item;
-import com.trialmobile.unlucky.main.Unlucky;
 import com.trialmobile.unlucky.resource.ResourceManager;
 import com.trialmobile.unlucky.resource.Util;
 import com.trialmobile.unlucky.screen.GameScreen;

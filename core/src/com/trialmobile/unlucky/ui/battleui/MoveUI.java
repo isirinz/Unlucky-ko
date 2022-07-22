@@ -29,7 +29,7 @@ import com.trialmobile.unlucky.screen.GameScreen;
  */
 public class MoveUI extends BattleUI {
 
-    private Stage stage;
+    private final Stage stage;
 
     // Buttons
     private ImageButton[] moveButtons;
@@ -45,10 +45,10 @@ public class MoveUI extends BattleUI {
     private Label[] moveDescLabels;
     private Label[] optionNameLabels;
     private Label[] optionDescLabels;
-    private boolean[] optionButtonTouchable = new boolean[2];
+    private final boolean[] optionButtonTouchable = new boolean[2];
 
     // Special moves
-    private Array<SpecialMove> playerSmoveset;
+    private final Array<SpecialMove> playerSmoveset;
     private SpecialMove smove;
     private boolean onCd = false;
     private int turnCounter = 0;

@@ -12,7 +12,7 @@ buildscript {
     dependencies {
         classpath 'org.wisepersist:gwt-gradle-plugin:1.1.16'
         classpath 'org.gretty:gretty:3.0.7'
-        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath 'com.android.tools.build:gradle:7.0.4'
         classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.15'
     }
 }
@@ -20,10 +20,10 @@ buildscript {
 allprojects {
     apply plugin: "eclipse"
 
-    version = '1.0'
+    version = '1.1.6'
     ext {
-        appName = "my-gdx-game"
-        gdxVersion = '1.10.0'
+        appName = "Unlucky'"
+        gdxVersion = '1.11.0'
         roboVMVersion = '2.3.15'
         box2DLightsVersion = '1.5'
         ashleyVersion = '1.7.4'
@@ -72,7 +72,7 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-arm64-v8a"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
-        implementation 'com.resyp.offerwall:offerwall-sdk:1.1.5'
+        implementation 'com.resyp.offerwall:offerwall-sdk:1.1.6'
 
         def lifecycle_version = "2.0.0"
         implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"

@@ -29,14 +29,11 @@ public class StatisticsScreen extends MenuExtensionScreen {
     private String[] statsDescs;
     private String[] statsNums;
 
-    private Label.LabelStyle[] headerStyles;
-    private Label.LabelStyle statStyle;
-    private Image scrollBackground;
+    private final Label.LabelStyle[] headerStyles;
+    private final Label.LabelStyle statStyle;
 
     // scroll pane
     private Table scrollTable;
-    private Table selectionContainer;
-    private ScrollPane scrollPane;
 
     public StatisticsScreen(final Unlucky game, final ResourceManager rm) {
         super(game, rm);
@@ -70,7 +67,7 @@ public class StatisticsScreen extends MenuExtensionScreen {
             }
         });
 
-        scrollBackground = new Image(rm.skin, "default-slider");
+        Image scrollBackground = new Image(rm.skin, "default-slider");
         scrollBackground.setPosition(16, 16);
         scrollBackground.setSize(368, 176);
         stage.addActor(scrollBackground);
@@ -102,7 +99,7 @@ public class StatisticsScreen extends MenuExtensionScreen {
         scrollTable = new Table();
         scrollTable.setFillParent(true);
         stage.addActor(scrollTable);
-        selectionContainer = new Table();
+        Table selectionContainer = new Table();
 
         for (int i = 0; i < statsDescs.length; i++) {
             Label statDesc;
@@ -137,7 +134,7 @@ public class StatisticsScreen extends MenuExtensionScreen {
         selectionContainer.setOrigin(selectionContainer.getWidth() / 2,
             selectionContainer.getHeight() / 2);
 
-        scrollPane = new ScrollPane(selectionContainer, rm.skin);
+        ScrollPane scrollPane = new ScrollPane(selectionContainer, rm.skin);
         scrollPane.setScrollingDisabled(true, false);
         scrollPane.setFadeScrollBars(false);
         scrollPane.layout();

@@ -30,13 +30,13 @@ public class ParticleFactory {
     // pool
     public Pool<Particle> particlePool;
 
-    private Vector2 particleVelocity = new Vector2();
+    private final Vector2 particleVelocity = new Vector2();
 
     // camera viewport
-    private int viewWidth;
-    private int viewHeight;
+    private final int viewWidth;
+    private final int viewHeight;
 
-    private OrthographicCamera cam;
+    private final OrthographicCamera cam;
     private final ResourceManager rm;
 
     public ParticleFactory(OrthographicCamera cam, final ResourceManager rm) {
@@ -45,7 +45,7 @@ public class ParticleFactory {
         this.viewHeight = (int) cam.viewportHeight;
         this.rm = rm;
 
-        particles = new Array<Particle>();
+        particles = new Array<>();
         particlePool = new Pool<Particle>() {
             @Override
             protected Particle newObject() {
@@ -86,8 +86,8 @@ public class ParticleFactory {
     /**
      * Resets the factory to generate a new type of particle
      *
-     * @param type
-     * @param numParticles
+     * @param type type
+     * @param numParticles int
      */
     public void set(int type, int numParticles, Vector2 velocity) {
         particles.clear();

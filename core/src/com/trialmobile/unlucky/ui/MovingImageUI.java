@@ -23,12 +23,12 @@ public class MovingImageUI extends Image {
     /**
      * For single non animated images
      *
-     * @param skin
-     * @param origin
-     * @param target
-     * @param speed
-     * @param w
-     * @param h
+     * @param skin skin
+     * @param origin origin
+     * @param target target
+     * @param speed speed
+     * @param w width
+     * @param h height
      */
     public MovingImageUI(TextureRegion skin, Vector2 origin, Vector2 target, float speed, int w, int h) {
         this(skin);

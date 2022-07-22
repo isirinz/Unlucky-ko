@@ -40,31 +40,12 @@ public class MenuScreen extends MenuExtensionScreen {
     public int transitionIn = 0;
 
     // title animation (each letter moves down at descending speeds)
-    private Moving[] titleMoves;
-    private Image[] letters;
-
-    // label style
-    private Label.LabelStyle menuStyle;
-    private Label battleLabel;
-
-    // play button
-    private ImageButton playButton;
-    // other buttons
-    private ImageButton[] optionButtons;
-    private ImageButton offerWallButton;
-    private ImageButton videoAdButton;
+    private final Moving[] titleMoves;
+    private final Image[] letters;
 
     private static final int NUM_BUTTONS = 6;
 
-    // Credits Screen box
-    private Image dark;
     private Group credits;
-    private Image frame;
-    private Label copyright;
-    private Label github;
-    private Label youtube;
-    private Image[] creditsIcons;
-    private ImageButton exitButton;
 
     private final Preferences prefs;
     private long videoTime = 0;
@@ -73,7 +54,8 @@ public class MenuScreen extends MenuExtensionScreen {
         super(game, rm);
         prefs = Gdx.app.getPreferences("Unlucky Preference");
 
-        menuStyle = new Label.LabelStyle(rm.pixel10, new Color(79 / 255.f, 79 / 255.f, 117 / 255.f, 1));
+        // label style
+        Label.LabelStyle menuStyle = new Label.LabelStyle(rm.pixel10, new Color(79 / 255.f, 79 / 255.f, 117 / 255.f, 1));
 
         // one for each letter
         titleMoves = new Moving[7];
@@ -88,7 +70,7 @@ public class MenuScreen extends MenuExtensionScreen {
         handlePlayButton();
         handleOptionButtons();
 
-        battleLabel = new Label(rm.bundle.get("BATTLE"), menuStyle);
+        Label battleLabel = new Label(rm.bundle.get("BATTLE"), menuStyle);
         battleLabel.setSize(160, 80);
         battleLabel.setFontScale(1.5f);
         battleLabel.setTouchable(Touchable.disabled);
@@ -145,7 +127,8 @@ public class MenuScreen extends MenuExtensionScreen {
         ImageButton.ImageButtonStyle s = new ImageButton.ImageButtonStyle();
         s.imageUp = new TextureRegionDrawable(rm.playButton[0][0]);
         s.imageDown = new TextureRegionDrawable(rm.playButton[1][0]);
-        playButton = new ImageButton(s);
+        // play button
+        ImageButton playButton = new ImageButton(s);
         playButton.setPosition(140, 70);
         playButton.getImage().setScale(2);
         stage.addActor(playButton);
@@ -232,7 +215,8 @@ public class MenuScreen extends MenuExtensionScreen {
 
     private void handleOptionButtons() {
         ImageButton.ImageButtonStyle[] styles = rm.loadImageButtonStyles(NUM_BUTTONS, rm.menuButtons);
-        optionButtons = new ImageButton[NUM_BUTTONS];
+        // other buttons
+        ImageButton[] optionButtons = new ImageButton[NUM_BUTTONS];
         for (int i = 0; i < NUM_BUTTONS; i++) {
             optionButtons[i] = new ImageButton(styles[i]);
             optionButtons[i].setSize(40, 40);
@@ -301,7 +285,7 @@ public class MenuScreen extends MenuExtensionScreen {
 
         ImageButton.ImageButtonStyle videoAdStyle = new ImageButton.ImageButtonStyle();
         videoAdStyle.imageUp = new TextureRegionDrawable(rm.videoAdIcon);
-        videoAdButton = new ImageButton(videoAdStyle);
+        ImageButton videoAdButton = new ImageButton(videoAdStyle);
         stage.addActor(videoAdButton);
         videoAdButton.setPosition(80, 115);
         videoAdButton.addListener(new ClickListener() {
@@ -336,8 +320,8 @@ public class MenuScreen extends MenuExtensionScreen {
         if (Gdx.app.getType().equals(Application.ApplicationType.Android)) {
             ImageButton.ImageButtonStyle offerWallStyle = new ImageButton.ImageButtonStyle();
             offerWallStyle.imageUp = new TextureRegionDrawable(rm.offerWallIcon);
-            offerWallButton = new ImageButton(offerWallStyle);
-//            stage.addActor(offerWallButton);
+            ImageButton offerWallButton = new ImageButton(offerWallStyle);
+            stage.addActor(offerWallButton);
             offerWallButton.setPosition(80, 45);
             offerWallButton.addListener(new ClickListener() {
                 @Override
@@ -355,23 +339,24 @@ public class MenuScreen extends MenuExtensionScreen {
         credits.setSize(Unlucky.V_WIDTH, Unlucky.V_HEIGHT);
 
         // darken the menu screen to focus on the credits
-        dark = new Image(rm.shade);
+        // Credits Screen box
+        Image dark = new Image(rm.shade);
         dark.setScale(2);
         credits.addActor(dark);
 
-        frame = new Image(rm.skin, "textfield");
+        Image frame = new Image(rm.skin, "textfield");
         frame.setScale(2);
         frame.setSize(120, 60);
-        frame.setPosition(Unlucky.V_WIDTH / 2 - 120, Unlucky.V_HEIGHT / 2 - 60);
+        frame.setPosition(Unlucky.V_WIDTH / 2f - 120, Unlucky.V_HEIGHT / 2f - 60);
         credits.addActor(frame);
 
         ImageButton.ImageButtonStyle exitStyle = new ImageButton.ImageButtonStyle();
         exitStyle.imageUp = new TextureRegionDrawable(rm.exitbutton18x18[0][0]);
         exitStyle.imageDown = new TextureRegionDrawable(rm.exitbutton18x18[1][0]);
-        exitButton = new ImageButton(exitStyle);
+        ImageButton exitButton = new ImageButton(exitStyle);
         exitButton.getImage().setScale(2);
         exitButton.setSize(28, 28);
-        exitButton.setPosition(Unlucky.V_WIDTH / 2 + 106, Unlucky.V_HEIGHT / 2 + 44);
+        exitButton.setPosition(Unlucky.V_WIDTH / 2f + 106, Unlucky.V_HEIGHT / 2f + 44);
         credits.addActor(exitButton);
         exitButton.addListener(new ClickListener() {
             @Override
@@ -381,14 +366,14 @@ public class MenuScreen extends MenuExtensionScreen {
             }
         });
 
-        copyright = new Label(rm.bundle.format("COPYRIGHT", Unlucky.VERSION),
-            new Label.LabelStyle(rm.pixel10, Color.WHITE));
+        Label copyright = new Label(rm.bundle.format("COPYRIGHT", Unlucky.VERSION),
+                new Label.LabelStyle(rm.pixel10, Color.WHITE));
         copyright.setFontScale(0.75f);
         copyright.setPosition(106, 140);
         copyright.setTouchable(Touchable.disabled);
         credits.addActor(copyright);
 
-        github = new Label("GITHUB", new Label.LabelStyle(rm.pixel10, new Color(140 / 255.f, 60 / 255.f, 1, 1)));
+        Label github = new Label("GITHUB", new Label.LabelStyle(rm.pixel10, new Color(140 / 255.f, 60 / 255.f, 1, 1)));
         github.setPosition(160, 112);
         credits.addActor(github);
         github.addListener(new ClickListener() {
@@ -398,7 +383,7 @@ public class MenuScreen extends MenuExtensionScreen {
             }
         });
 
-        youtube = new Label("YOUTUBE", new Label.LabelStyle(rm.pixel10, Color.RED));
+        Label youtube = new Label("YOUTUBE", new Label.LabelStyle(rm.pixel10, Color.RED));
         youtube.setPosition(160, 76);
         credits.addActor(youtube);
         youtube.addListener(new ClickListener() {
@@ -408,7 +393,7 @@ public class MenuScreen extends MenuExtensionScreen {
             }
         });
 
-        creditsIcons = new Image[2];
+        Image[] creditsIcons = new Image[2];
         for (int i = 0; i < 2; i++) {
             final int index = i;
             creditsIcons[i] = new Image(rm.creditsicons[i]);
@@ -441,7 +426,7 @@ public class MenuScreen extends MenuExtensionScreen {
         for (int i = 0; i < titleMoves.length; i++) {
             titleMoves[i].origin.set(new Vector2(74 + i * 36, 240 + 48));
             titleMoves[i].target.set(new Vector2(74 + i * 36, 240 - 70));
-            titleMoves[i].speed = (275 - i * 24) / 2;
+            titleMoves[i].speed = (275 - i * 24) / 2f;
             titleMoves[i].horizontal = false;
             titleMoves[i].start();
         }

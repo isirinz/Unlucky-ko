@@ -44,8 +44,8 @@ public class Equipment {
      * The player equips an item and it gets placed into the correct slot
      * Returns false if cannot be equipped
      *
-     * @param equip
-     * @return
+     * @param equip item
+     * @return boolean
      */
     public boolean addEquip(Item equip) {
         if (equips[equip.type - 2] == null) {
@@ -59,11 +59,11 @@ public class Equipment {
     /**
      * Removes an equip at an index and returns the Item
      *
-     * @param index
-     * @return
+     * @param index index
+     * @return item
      */
     public Item removeEquip(int index) {
-        Item ret = null;
+        Item ret;
         if (equips[index] != null) {
             ret = equips[index];
             equips[index] = null;
@@ -75,8 +75,8 @@ public class Equipment {
     /**
      * Returns the equip from a specific index but does not remove it
      *
-     * @param index
-     * @return
+     * @param index index
+     * @return item
      */
     public Item getEquipAt(int index) {
         return equips[index];

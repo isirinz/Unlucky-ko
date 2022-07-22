@@ -21,10 +21,10 @@ import com.trialmobile.unlucky.resource.ResourceManager;
 public class Save {
 
     // for saving and loading
-    private Player player;
+    private final Player player;
     public PlayerAccessor psave;
-    private Json json;
-    private FileHandle file;
+    private final Json json;
+    private final FileHandle file;
 
     public Save(Player player, String path) {
         this.player = player;
@@ -151,7 +151,9 @@ public class Save {
                     else if (ia.type == 10)
                         sitem = new ShopItem(rm, ia.name, ia.desc, ia.rarity, ia.imgIndex, 0,
                             ia.eChance, ia.sell, ((ShopItemAccessor) ia).price);
-                    player.equips.addEquip(sitem);
+                    if (sitem != null) {
+                        player.equips.addEquip(sitem);
+                    }
                 }
                 else {
                     Item item = null;
@@ -166,7 +168,9 @@ public class Save {
                     else if (ia.type == 10)
                         item = new Item(rm, ia.name, ia.desc, ia.rarity, ia.imgIndex, 0, 0,
                             ia.eChance, ia.sell);
-                    player.equips.addEquip(item);
+                    if (item != null) {
+                        player.equips.addEquip(item);
+                    }
                 }
             }
         }

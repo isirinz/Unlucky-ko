@@ -16,13 +16,13 @@ import com.trialmobile.unlucky.inventory.Item;
  */
 public class ItemTooltip extends Window {
 
-    private Label desc;
+    private final Label desc;
 
     // label styles for different color names based on item rarity
-    private Label.LabelStyle common;
-    private Label.LabelStyle rare;
-    private Label.LabelStyle epic;
-    private Label.LabelStyle legendary;
+    private final Label.LabelStyle common;
+    private final Label.LabelStyle rare;
+    private final Label.LabelStyle epic;
+    private final Label.LabelStyle legendary;
 
     public ItemTooltip(Skin skin) {
         super("", skin);
@@ -55,9 +55,9 @@ public class ItemTooltip extends Window {
      * epic - blue
      * legendary - purple
      *
-     * @param item
-     * @param x
-     * @param y
+     * @param item item
+     * @param x x
+     * @param y y
      */
     public void show(Item item, float x, float y) {
         this.setPosition(x, y);

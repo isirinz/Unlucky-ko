@@ -21,7 +21,7 @@ public class Inventory {
      * Returns the index of the first empty slot in the inventory
      * Returns -1 if there are no free slots
      *
-     * @return
+     * @return int
      */
     public int getFirstFreeSlotIndex() {
         for (int i = 0; i < NUM_SLOTS; i++) {
@@ -34,8 +34,8 @@ public class Inventory {
      * Returns the Item in the inventory at a given index
      * but does not remove the item from the inventory
      *
-     * @param index
-     * @return
+     * @param index index
+     * @return item
      */
     public Item getItem(int index) {
         return items[index];
@@ -44,8 +44,8 @@ public class Inventory {
     /**
      * Returns whether or not a slot at an index is empty
      *
-     * @param index
-     * @return
+     * @param index index
+     * @return boolean
      */
     public boolean isFreeSlot(int index) {
         return items[index] == null;
@@ -55,8 +55,8 @@ public class Inventory {
      * Adds an Item to the inventory that is placed in the first available slot
      * Returns false if item cannot be added
      *
-     * @param item
-     * @return
+     * @param item item
+     * @return boolean
      */
     public boolean addItem(Item item) {
         int i = getFirstFreeSlotIndex();
@@ -72,9 +72,9 @@ public class Inventory {
      * Adds an Item at a specific index
      * Returns false if item cannot be added
      *
-     * @param item
-     * @param index
-     * @return
+     * @param item item
+     * @param index index
+     * @return boolean
      */
     public boolean addItemAtIndex(Item item, int index) {
         if (isFreeSlot(index)) {
@@ -88,7 +88,7 @@ public class Inventory {
     /**
      * Removes an Item from the inventory at a specific index
      *
-     * @param index
+     * @param index index
      */
     public void removeItem(int index) {
         if (items[index] != null) items[index] = null;
@@ -97,11 +97,11 @@ public class Inventory {
     /**
      * Removes an Item from the inventory and returns the Item
      *
-     * @param index
-     * @return
+     * @param index index
+     * @return item
      */
     public Item takeItem(int index) {
-        Item ret = null;
+        Item ret;
         if (items[index] != null) {
             ret = items[index];
             items[index] = null;
@@ -113,7 +113,7 @@ public class Inventory {
     /**
      * Returns whether or not the inventory is full
      *
-     * @return
+     * @return boolean
      */
     public boolean isFull() {
         for (int i = 0; i < NUM_SLOTS; i++) {

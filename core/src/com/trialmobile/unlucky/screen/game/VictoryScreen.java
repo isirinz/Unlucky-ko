@@ -29,23 +29,10 @@ import com.trialmobile.unlucky.screen.AbstractScreen;
  */
 public class VictoryScreen extends AbstractScreen {
 
-    // banner
-    private Image bannerBg;
-    private Label bannerText;
+    private final Label videoLabel;
+    private final TextButton videoButton;
 
-    // exit button
-    private ImageButton exitButton;
-    private Label nextLabel;
-
-    // next button
-    private ImageButton nextButton;
-
-    private Label videoLabel;
-    private TextButton videoButton;
-
-    // information
-    private Image infoBg;
-    private Label info;
+    private final Label info;
     private static final int NUM_COLS = 5;
 
     private boolean isDoubleReward = false;
@@ -55,12 +42,13 @@ public class VictoryScreen extends AbstractScreen {
     public VictoryScreen(final Unlucky game, final ResourceManager rm) {
         super(game, rm);
 
-        bannerBg = new Image(rm.skin, "default-slider");
+        // banner
+        Image bannerBg = new Image(rm.skin, "default-slider");
         bannerBg.setSize(240, 36);
         bannerBg.setPosition((float)Unlucky.V_WIDTH / 2 - 140, 192);
         stage.addActor(bannerBg);
 
-        bannerText = new Label(rm.bundle.get("VICTORY"), new Label.LabelStyle(rm.pixel10, new Color(0, 215 / 255.f, 0, 1)));
+        Label bannerText = new Label(rm.bundle.get("VICTORY"), new Label.LabelStyle(rm.pixel10, new Color(0, 215 / 255.f, 0, 1)));
         bannerText.setFontScale(1.5f);
         bannerText.setSize(240, 36);
         bannerText.setPosition((float)Unlucky.V_WIDTH / 2 - 140, 192);
@@ -71,7 +59,8 @@ public class VictoryScreen extends AbstractScreen {
         ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
         style.imageUp = new TextureRegionDrawable(rm.menuExitButton[0][0]);
         style.imageDown = new TextureRegionDrawable(rm.menuExitButton[1][0]);
-        exitButton = new ImageButton(style);
+        // exit button
+        ImageButton exitButton = new ImageButton(style);
         exitButton.getImage().setScale(2);
         exitButton.setSize(28, 28);
         exitButton.setPosition(354, 192);
@@ -85,7 +74,8 @@ public class VictoryScreen extends AbstractScreen {
             }
         });
 
-        infoBg = new Image(rm.skin, "default-slider");
+        // information
+        Image infoBg = new Image(rm.skin, "default-slider");
         infoBg.setSize(240, 176);
         infoBg.setPosition((float)Unlucky.V_WIDTH / 2 - 140, 8);
         stage.addActor(infoBg);
@@ -102,12 +92,13 @@ public class VictoryScreen extends AbstractScreen {
         nextStyle.imageUp = new TextureRegionDrawable(rm.smoveButtons[0][0]);
         nextStyle.imageDown = new TextureRegionDrawable(rm.smoveButtons[1][0]);
 
-        nextButton = new ImageButton(nextStyle);
+        // next button
+        ImageButton nextButton = new ImageButton(nextStyle);
         nextButton.setPosition(314, 16);
         nextButton.getImage().setScale(2);
         stage.addActor(nextButton);
 
-        nextLabel = new Label(rm.bundle.get("NEXT"), new Label.LabelStyle(rm.pixel10, Color.WHITE));
+        Label nextLabel = new Label(rm.bundle.get("NEXT"), new Label.LabelStyle(rm.pixel10, Color.WHITE));
         nextLabel.setFontScale(0.5f);
         nextLabel.setTouchable(Touchable.disabled);
         nextLabel.setSize(76, 36);
@@ -177,7 +168,7 @@ public class VictoryScreen extends AbstractScreen {
             public void clicked(InputEvent event, float x, float y) {
                 if (gameMap.levelIndex != rm.worlds.get(gameMap.worldIndex).numLevels - 1) {
                     // switch back to level select screen
-                    for (Item item : gameMap.itemsObtained) item.actor.remove();
+                    for (Item item : new Array.ArrayIterator<>(gameMap.itemsObtained)) item.actor.remove();
                     game.levelSelectScreen.setWorld(gameMap.worldIndex);
                     rm.menuTheme.play();
                     setFadeScreen(game.levelSelectScreen);

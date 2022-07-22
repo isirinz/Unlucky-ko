@@ -33,15 +33,15 @@ import com.trialmobile.unlucky.screen.GameScreen;
  */
 public class BattleEventHandler extends BattleUI {
 
-    private Stage stage;
+    private final Stage stage;
     private float stateTime = 0;
 
     // the ui for displaying text
-    private Image ui;
+    private final Image ui;
     // Label for text animation
-    private Label textLabel;
+    private final Label textLabel;
     // invisible Label for clicking the window
-    private Label clickLabel;
+    private final Label clickLabel;
 
     // text animation
     private String currentText = "";
@@ -126,8 +126,9 @@ public class BattleEventHandler extends BattleUI {
      * Starts the text animation process given an array of Strings
      * Also takes in a BattleEvent that is called after the dialog is done
      *
-     * @param dialog
-     * @param next
+     * @param dialog string[]
+     * @param prev event
+     * @param next event
      */
     public void startDialog(String[] dialog, BattleEvent prev, BattleEvent next) {
         ui.setVisible(true);
@@ -204,7 +205,7 @@ public class BattleEventHandler extends BattleUI {
     /**
      * Handles battle events and turn based system
      *
-     * @param event
+     * @param event event
      */
     public void handleBattleEvent(BattleEvent event) {
         switch (event) {
@@ -305,7 +306,7 @@ public class BattleEventHandler extends BattleUI {
     /**
      * Applies damage dealt to player and checks if they are dead
      *
-     * @return
+     * @return boolean
      */
     private boolean applyPlayerDamage() {
         player.applyDamage();
@@ -349,7 +350,7 @@ public class BattleEventHandler extends BattleUI {
     /**
      * Applies damage dealt to enemy and check if they are dead
      *
-     * @return
+     * @return boolean
      */
     private boolean applyEnemyDamage() {
         battle.opponent.applyDamage();
@@ -436,7 +437,7 @@ public class BattleEventHandler extends BattleUI {
     /**
      * A boss may have a special death event
      *
-     * @return
+     * @return boolean
      */
     private boolean bossDeathEvents() {
         if (battle.opponent.isBoss()) {
@@ -448,7 +449,7 @@ public class BattleEventHandler extends BattleUI {
                     battle.opponent.numRespawn++;
                     // shrink king slime
                     battle.opponent.battleSize -= 8;
-                    battle.opponent.setOnlyMaxHp((int) Math.ceil(battle.opponent.getMaxHp() / 2));
+                    battle.opponent.setOnlyMaxHp((int) Math.ceil(battle.opponent.getMaxHp() / 2f));
                     battle.opponent.setPreviousHp(0);
                     battle.opponent.setHp(battle.opponent.getMaxHp());
                     battle.opponent.setDead(false);

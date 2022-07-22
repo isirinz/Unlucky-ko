@@ -152,16 +152,16 @@ public class Util {
      * @return max experience at a given level
      */
     public static int calculateMaxExp(int level, int offset) {
-        return (int) (2 * level * (Math.pow(1.3, level / 3)) + offset) + 4;
+        return (int) (2 * level * (Math.pow(1.3, level / 3f)) + offset) + 4;
     }
 
     /**
      * The exp given to the player after it's defeated
      * EXP = (enemyLevel ^ 0.8) + offset
      *
-     * @param enemyLevel
-     * @param offset
-     * @return
+     * @param enemyLevel level
+     * @param offset offset
+     * @return exp
      */
     public static int calculateExpEarned(int enemyLevel, int offset) {
         return (int) (Math.pow(enemyLevel, 0.95)) + offset;
@@ -172,8 +172,8 @@ public class Util {
     /**
      * Returns if an event was successful given a probability
      *
-     * @param p
-     * @return
+     * @param p percentage
+     * @return boolean
      */
     public static boolean isSuccess(int p) {
         int k = MathUtils.random(99);
@@ -185,7 +185,7 @@ public class Util {
      *
      * @param mu avg
      * @param sigma deviation
-     * @return
+     * @return value
      */
     public static int getDeviatedRandomValue(int mu, int sigma) {
         int n0 = mu - sigma;
@@ -220,15 +220,15 @@ public class Util {
     public static final int[] BLOCKED_ANIMATED_TILE_IDS = { 96, 109 };
 
     public static boolean isBlockedTile(int id) {
-        for (int i = 0; i < BLOCKED_TILE_IDS.length; i++) {
-            if (id == BLOCKED_TILE_IDS[i]) return true;
+        for (int blockedTileId : BLOCKED_TILE_IDS) {
+            if (id == blockedTileId) return true;
         }
         return false;
     }
 
     public static boolean isBlockedAnimatedTile(int id) {
-        for (int i = 0; i < BLOCKED_ANIMATED_TILE_IDS.length; i++) {
-            if (id == BLOCKED_ANIMATED_TILE_IDS[i]) return true;
+        for (int blockedAnimatedTileId : BLOCKED_ANIMATED_TILE_IDS) {
+            if (id == blockedAnimatedTileId) return true;
         }
         return false;
     }

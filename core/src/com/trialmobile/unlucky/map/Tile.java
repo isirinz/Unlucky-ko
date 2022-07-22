@@ -66,9 +66,9 @@ public class Tile {
     /**
      * A regular non-animated tile
      *
-     * @param id
-     * @param sprite
-     * @param tilePosition
+     * @param id id
+     * @param sprite region
+     * @param tilePosition vector2
      */
     public Tile(int id, TextureRegion sprite, Vector2 tilePosition) {
         this.id = id;
@@ -90,8 +90,8 @@ public class Tile {
      * An animated tile
      *
      * @param id is animIndex + 96 since all animated tile ids will begin at 96
-     * @param anim
-     * @param tilePosition
+     * @param anim anim
+     * @param tilePosition vector2
      */
     public Tile(int id, AnimationManager anim, Vector2 tilePosition) {
         this.id = id;
@@ -162,7 +162,7 @@ public class Tile {
     /**
      * A special tile is any tile not normal or blocked
      *
-     * @return
+     * @return boolean
      */
     public boolean isSpecial() {
         return type != NORMAL && type != BLOCKED;
@@ -171,7 +171,7 @@ public class Tile {
     /**
      * A moving tile is any tile where the player cannot stay on
      *
-     * @return
+     * @return boolean
      */
     public boolean isMoving() {
         return type == 2 || type == 3 || (type > 4 && type < 9) || type == ICE;

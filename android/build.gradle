@@ -1,8 +1,8 @@
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
     sourceSets {
         main {
-            manifest.srcFile 'AndroidManifest.xml'
+            manifest.srcFile 'onestore/AndroidManifest.xml'
             java.srcDirs = ['src']
             aidl.srcDirs = ['src']
             renderscript.srcDirs = ['src']
@@ -37,9 +37,9 @@ android {
     defaultConfig {
         applicationId "com.trialmobile.unlucky"
         minSdkVersion 21
-        targetSdkVersion 31
-        versionCode 4
-        versionName "1.1.2"
+        targetSdkVersion 32
+        versionCode 8
+        versionName "1.1.6"
     }
 
     signingConfigs {
@@ -54,6 +54,7 @@ android {
     buildTypes {
         release {
             minifyEnabled true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.releaseWithSignedKey
         }
@@ -74,9 +75,9 @@ android {
 
     dependencies {
         googleImplementation 'androidx.work:work-runtime:2.7.1'
-        googleImplementation 'com.google.android.gms:play-services-ads:20.6.0'
-        implementation 'com.unity3d.ads:unity-ads:4.1.0'
-        googleImplementation 'com.google.ads.mediation:unity:4.1.0.0'
+        googleImplementation 'com.google.android.gms:play-services-ads:21.1.0'
+        implementation 'com.unity3d.ads:unity-ads:4.2.1'
+        googleImplementation 'com.google.ads.mediation:unity:4.2.1.1'
     }
 }
 

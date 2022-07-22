@@ -18,8 +18,8 @@ public class StatusSet {
     public Array<StatusEffect> effects;
 
     // whether or not it's the player's status icons
-    private boolean player;
-    private ResourceManager rm;
+    private final boolean player;
+    private final ResourceManager rm;
 
     public StatusSet(boolean player, ResourceManager rm) {
         this.player = player;

@@ -45,10 +45,10 @@ public class Move {
     /**
      * Constructor for Accurate and Wide moves
      *
-     * @param type
-     * @param name
-     * @param min
-     * @param max
+     * @param type type
+     * @param name name
+     * @param min min
+     * @param max max
      */
     public Move(int type, String name, float min, float max) {
         this.type = type;
@@ -62,9 +62,9 @@ public class Move {
     /**
      * Constructor for Crit type
      *
-     * @param name
+     * @param name name
      * @param damage CANNOT BE 0 OR 1
-     * @param crit
+     * @param crit critical
      */
     public Move(String name, float damage, int crit) {
         type = 2;
@@ -78,10 +78,10 @@ public class Move {
     /**
      * Constructor for Heal type
      *
-     * @param name
-     * @param min
-     * @param max
-     * @param dmgReduction
+     * @param name name
+     * @param min min
+     * @param max max
+     * @param dmgReduction reduction
      */
     public Move(String name, float min, float max, int dmgReduction) {
         type = 3;
@@ -124,8 +124,8 @@ public class Move {
      */
     public void setHeal(int hpSeed) {
         if (type != 3) return;
-        minHeal = (hpSeed / 16) * minHeal;
-        maxHeal = (hpSeed / 16) * maxHeal;
+        minHeal = (hpSeed / 16f) * minHeal;
+        maxHeal = (hpSeed / 16f) * maxHeal;
     }
 
 }

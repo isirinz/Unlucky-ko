@@ -19,7 +19,7 @@ public class Moving {
     public Vector2 target;
 
     // speed in pixels/tick
-    public float speed = 0;
+    public float speed;
     public boolean horizontal;
     public boolean shouldStart = false;
 

@@ -20,12 +20,12 @@ import com.trialmobile.unlucky.ui.Hud;
  */
 public class TransitionScreen {
 
-    private GameScreen gameScreen;
-    private Battle battle;
-    private BattleUIHandler uiHandler;
-    private Hud hud;
-    private Player player;
-    private ResourceManager rm;
+    private final GameScreen gameScreen;
+    private final Battle battle;
+    private final BattleUIHandler uiHandler;
+    private final Hud hud;
+    private final Player player;
+    private final ResourceManager rm;
 
     // determine which one to render when entering and exiting battle
     public boolean renderMap = false;
@@ -33,7 +33,7 @@ public class TransitionScreen {
     public boolean renderLevelUp = false;
 
     // render black rectangles
-    private ShapeRenderer shapeRenderer;
+    private final ShapeRenderer shapeRenderer;
 
     private EventState prev;
     private EventState next;
@@ -75,8 +75,8 @@ public class TransitionScreen {
     /**
      * Sets the appropriate variables for each transition
      *
-     * @param prev
-     * @param next
+     * @param prev event
+     * @param next event
      */
     public void start(EventState prev, EventState next) {
         shouldStart = true;
@@ -195,13 +195,13 @@ public class TransitionScreen {
                 case 4:
                     x0 += (Util.TRANSITION_SCREEN_SPEED / 2) * dt;
                     x1 -= (Util.TRANSITION_SCREEN_SPEED / 2) * dt;
-                    if (x0 >= Unlucky.V_WIDTH / 2 && x1 <= Unlucky.V_WIDTH / 2) end();
+                    if (x0 >= Unlucky.V_WIDTH / 2f && x1 <= Unlucky.V_WIDTH / 2f) end();
                     break;
                 // vertical split
                 case 5:
                     y0 += (Util.TRANSITION_SCREEN_SPEED / 2) * dt;
                     y1 -= (Util.TRANSITION_SCREEN_SPEED / 2) * dt;
-                    if (y0 >= Unlucky.V_HEIGHT / 2 && y1 <= Unlucky.V_HEIGHT / 2) end();
+                    if (y0 >= Unlucky.V_HEIGHT / 2f && y1 <= Unlucky.V_HEIGHT / 2f) end();
                     break;
             }
         }
@@ -239,13 +239,13 @@ public class TransitionScreen {
                     break;
                 // horizontal split
                 case 4:
-                    shapeRenderer.rect(x0, 0, -Unlucky.V_WIDTH / 2, Unlucky.V_HEIGHT);
-                    shapeRenderer.rect(x1, 0, Unlucky.V_WIDTH / 2, Unlucky.V_HEIGHT);
+                    shapeRenderer.rect(x0, 0, -Unlucky.V_WIDTH / 2f, Unlucky.V_HEIGHT);
+                    shapeRenderer.rect(x1, 0, Unlucky.V_WIDTH / 2f, Unlucky.V_HEIGHT);
                     break;
                 // vertical split
                 case 5:
-                    shapeRenderer.rect(0, y0, Unlucky.V_WIDTH, -Unlucky.V_HEIGHT / 2);
-                    shapeRenderer.rect(0, y1, Unlucky.V_WIDTH, Unlucky.V_HEIGHT / 2);
+                    shapeRenderer.rect(0, y0, Unlucky.V_WIDTH, -Unlucky.V_HEIGHT / 2f);
+                    shapeRenderer.rect(0, y1, Unlucky.V_WIDTH, Unlucky.V_HEIGHT / 2f);
                     break;
             }
         }

@@ -37,7 +37,7 @@ public class ItemAccessor {
 
     /**
      * Updates the fields of this accessor with data from the item
-     * @param item
+     * @param item item
      */
     public void load(Item item) {
         this.name = item.name;

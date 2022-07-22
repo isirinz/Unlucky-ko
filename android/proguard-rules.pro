@@ -31,15 +31,15 @@
 -keep class com.badlogic.gdx.controllers.android.AndroidControllers
 
 # Required if using Box2D extension
--keepclassmembers class com.badlogic.gdx.physics.box2d.World {
-   boolean contactFilter(long, long);
-   void    beginContact(long);
-   void    endContact(long);
-   void    preSolve(long, long);
-   void    postSolve(long, long);
-   boolean reportFixture(long);
-   float   reportRayFixture(long, float, float, float, float, float);
-}
+#-keepclassmembers class com.badlogic.gdx.physics.box2d.World {
+#   boolean contactFilter(long, long);
+#   void    beginContact(long);
+#   void    endContact(long);
+#   void    preSolve(long, long);
+#   void    postSolve(long, long);
+#   boolean reportFixture(long);
+#   float   reportRayFixture(long, float, float, float, float, float);
+#}
 
 -keep class com.badlogic.**{
    **[] $VALUES;
@@ -47,5 +47,26 @@
 }
 
 -keep class com.trialmobile.save.** {
+   *;
+}
+
+# Keep filenames and line numbers for stack traces
+-keepattributes SourceFile,LineNumberTable
+
+# Keep JavascriptInterface for WebView bridge
+-keepattributes JavascriptInterface
+
+# Sometimes keepattributes is not enough to keep annotations
+-keep class android.webkit.JavascriptInterface {
+   *;
+}
+
+# Keep all classes in Unity Ads package
+-keep class com.unity3d.ads.** {
+   *;
+}
+
+# Keep all classes in Unity Services package
+-keep class com.unity3d.services.** {
    *;
 }
